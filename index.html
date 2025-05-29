@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter Social Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-emoji {
+            font-size: 2rem;
+        }
+
+        .section-content {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #64748b;
+        }
+
+        .feature-list li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+
+        .architecture-diagram {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid #334155;
+        }
+
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .team-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-role {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .team-desc {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .table th,
+        .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .table tr:hover {
+            background: #f8fafc;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .badge-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="main-title">🌟 Flutter Social Platform App</h1>
+                <p class="subtitle">A powerful, scalable, and modern social platform built with Flutter</p>
+                <p style="font-style: italic; opacity: 0.8;">Crafted with ❤️ by the Flutter Team at RootPointers</p>
+                <div class="badge-container">
+                    <span class="badge">📱 Demo</span>
+                    <span class="badge">🚀 Quick Start</span>
+                    <span class="badge">📖 Documentation</span>
+                    <span class="badge">🤝 Contributing</span>
+                    <span class="badge">📞 Support</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">🌍</span>Overview</h2>
+            <div class="section-content">
+                <p>The Flutter Social Platform App is a cross-platform mobile application designed to deliver a seamless
+                    and engaging social experience. Built with Flutter and Dart, it leverages a feature-first clean
+                    architecture, GetX for state management, and Firebase for robust backend services. This app supports
+                    real-time social interactions, customizable user profiles, and a modern UI/UX, making it a scalable
+                    foundation for social networking.</p>
+                <br>
+                <p>This README is your guide to understanding the project, setting it up, and contributing effectively.
+                    Whether you're a new developer joining the team or an experienced contributor, you'll find
+                    everything you need to dive in!</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">✨</span>Features</h2>
+            <div class="section-content">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3 class="feature-title">🔐 Authentication</h3>
+                        <ul class="feature-list">
+                            <li>Secure login/signup with email, phone, and OTP verification</li>
+                            <li>Password reset and change functionality</li>
+                            <li>Biometric authentication (fingerprint/face unlock)</li>
+                            <li>Social login integration (Google, Apple, etc.)</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">👤 User Profiles</h3>
+                        <ul class="feature-list">
+                            <li>Customizable profiles with bio, avatar, and cover photo</li>
+                            <li>Privacy settings for posts and interactions</li>
+                            <li>Activity tracking (likes, follows, posts)</li>
+                            <li>Media uploads (images, videos)</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">🏠 Social Interactions</h3>
+                        <ul class="feature-list">
+                            <li>Real-time feed with posts and updates</li>
+                            <li>Post creation with text, images, and videos</li>
+                            <li>Interactive comments and reaction system (likes, shares)</li>
+                            <li>Follow/unfollow and friend management</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">🎨 UI/UX</h3>
+                        <ul class="feature-list">
+                            <li>Material Design 3 with smooth animations and transitions</li>
+                            <li>Dark and light theme support</li>
+                            <li>Responsive layouts for all screen sizes</li>
+                            <li>Accessible design for inclusive user experiences</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">🔧 Additional Features</h3>
+                        <ul class="feature-list">
+                            <li>Push notifications for real-time updates</li>
+                            <li>In-app messaging and chat functionality</li>
+                            <li>Search for users and posts</li>
+                            <li>Analytics for user engagement tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">🏗️</span>Architecture Overview</h2>
+            <div class="section-content">
+                <p>We use a feature-first clean architecture, which organizes the codebase like a modular city:</p>
+                <br>
+                <div class="architecture-diagram">
+                    <h4>🏬 Features: Independent modules (e.g., auth, profile, home) act like self-contained
+                        neighborhoods, each with its own UI, logic, and services.</h4>
+                    <h4>🏛️ Core: Shared utilities (API clients, models, themes) serve as the city's infrastructure.
+                    </h4>
+                    <h4>🧱 Widgets: Reusable UI components are like building blocks used across features.</h4>
+                    <h4>⚙️ Services: External APIs and backend connections power the app's functionality.</h4>
+                </div>
+                <h3 style="margin-top: 20px; color: #2563eb;">Why This Architecture?</h3>
+                <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
+                    <li style="padding: 5px 0;"><strong>Modular:</strong> Add new features without disrupting existing
+                        ones.</li>
+                    <li style="padding: 5px 0;"><strong>Scalable:</strong> Supports large teams and complex apps.</li>
+                    <li style="padding: 5px 0;"><strong>Maintainable:</strong> Clear separation of concerns reduces bugs
+                        and simplifies debugging.</li>
+                    <li style="padding: 5px 0;"><strong>Collaborative:</strong> Developers can work on isolated features
+                        simultaneously.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">📁</span>Project Structure</h2>
+            <div class="section-content">
+                <p>The codebase is organized for clarity and ease of navigation. Here's the structure:</p>
+                <div class="code-block">
+                    <pre>lib/
+├── 🎯 features/                 # Feature modules (self-contained)
+│   ├── 🔐 auth/                # Authentication feature
+│   │   ├── login/
+│   │   │   ├── view/           # UI components
+│   │   │   │   └── login_view.dart
+│   │   │   └── controller/     # Business logic
+│   │   │       └── login_controller.dart
+│   │   ├── signup/
+│   │   ├── otp/
+│   │   ├── reset_password/
+│   │   ├── password_change/
+│   │   └── services/           # Feature-specific API calls
+│   │       └── auth_service.dart
+│   ├── 👤 profile/             # Profile management
+│   │   ├── view/
+│   │   ├── controller/
+│   │   └── services/
+│   ├── 🏠 home/                # Social feed and interactions
+│   │   ├── view/
+│   │   ├── controller/
+│   │   └── services/
+│   └── [other features]/       # e.g., chat, notifications, search
+│
+├── 🏛️ core/                    # Shared utilities
+│   ├── 🌐 api_services/        # Network and API handling
+│   │   ├── api_client.dart
+│   │   ├── interceptors/
+│   │   └── endpoints/
+│   ├── 📋 constants/           # App-wide configurations
+│   │   ├── app_constants.dart
+│   │   ├── api_constants.dart
+│   │   └── theme_constants.dart
+│   ├── 🔧 extensions/          # Dart utility extensions
+│   │   ├── string_extensions.dart
+│   │   └── widget_extensions.dart
+│   ├── 🌍 global/              # Global state and controllers
+│   │   ├── app_controller.dart
+│   │   └── theme_controller.dart
+│   ├── 🧩 mixins/              # Reusable code snippets
+│   │   ├── validation_mixin.dart
+│   │   └── loading_mixin.dart
+│   ├── 📊 models/              # Data models
+│   │   ├── user_model.dart
+│   │   └── post_model.dart
+│   ├── 🎨 theme/               # App styling and themes
+│   │   ├── app_theme.dart
+│   │   ├── colors.dart
+│   │   └── text_styles.dart
+│   └── 🛠️ utils/               # Helper functions
+│       ├── validators.dart
+│       ├── helpers.dart
+│       └── formatters.dart
+│
+├── 🧱 widgets/                 # Reusable UI components
+│   ├── app_button.dart
+│   ├── app_textfield.dart
+│   ├── app_divider.dart
+│   ├── app_iconbox.dart
+│   └── custom_scaffold.dart
+│
+├── 📱 main.dart                # App entry point
+├── 🛠️ app.dart                 # App configuration
+└── 🎨 assets.dart              # Asset management</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">🚀</span>Quick Start for New Developers</h2>
+            <div class="section-content">
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">Welcome to the team! Follow these steps to set up the
+                    project and start contributing:</p>
+
+                <h3 style="color: #2563eb; margin-bottom: 15px;">📋 Prerequisites</h3>
+                <ul style="margin-bottom: 20px;">
+                    <li><strong>Flutter SDK:</strong> Version ^3.5.3 (Installation Guide)</li>
+                    <li><strong>Dart SDK:</strong> Included with Flutter</li>
+                    <li><strong>IDE:</strong> Android Studio or VS Code with Flutter/Dart plugins</li>
+                    <li><strong>Git:</strong> For version control</li>
+                    <li><strong>Firebase CLI:</strong> For backend setup (Setup Guide)</li>
+                </ul>
+
+                <h3 style="color: #2563eb; margin-bottom: 15px;">🛠️ Setup Instructions</h3>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>1. Clone the Repository</h4>
+                    <div class="code-block">
+                        <pre>git clone https://github.com/your-org/flutter-social-platform.git
+cd flutter-social-platform</pre>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>2. Install Dependencies</h4>
+                    <div class="code-block">
+                        <pre>flutter pub get</pre>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>3. Configure Environment</h4>
+                    <div class="code-block">
+                        <pre>cp .env.example .env</pre>
+                    </div>
+                    <p>Edit .env with your API keys and Firebase configuration:</p>
+                    <div class="code-block">
+                        <pre>API_BASE_URL=https://your-api-endpoint.com
+API_KEY=your-api-key
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_API_KEY=your-firebase-key
+ENABLE_ANALYTICS=true
+ENABLE_CRASHLYTICS=true</pre>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>4. Set Up Firebase</h4>
+                    <div class="code-block">
+                        <pre>firebase login
+flutterfire configure</pre>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>5. Run Code Generation</h4>
+                    <div class="code-block">
+                        <pre>flutter packages pub run build_runner build --delete-conflicting-outputs</pre>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>6. Launch the App</h4>
+                    <div class="code-block">
+                        <pre>flutter run</pre>
+                    </div>
+                </div>
+
+                <h3 style="color: #2563eb; margin-top: 25px; margin-bottom: 15px;">💡 Tips for New Developers</h3>
+                <ul>
+                    <li><strong>Start with main.dart:</strong> Understand app initialization and entry point.</li>
+                    <li><strong>Explore features/:</strong> Each folder is a self-contained module (e.g., auth/,
+                        profile/).</li>
+                    <li><strong>Use core/utils/:</strong> Contains helper functions for validation, formatting, and
+                        more.</li>
+                    <li><strong>Check widgets/:</strong> Reusable UI components to speed up development.</li>
+                    <li><strong>Ask Questions:</strong> Reach out on Slack (#flutter-social-platform) or email
+                        (flutter@rootpointer.com).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">📐</span>Architecture Guidelines</h2>
+            <div class="section-content">
+                <p>To maintain a clean and consistent codebase, adhere to these principles:</p>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Principle</th>
+                                <th>Description</th>
+                                <th>Why It Matters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Feature Isolation</strong></td>
+                                <td>Each feature (e.g., auth, profile) is self-contained with its own views,
+                                    controllers, and services.</td>
+                                <td>Prevents code tangling and simplifies debugging.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>No Logic in UI</strong></td>
+                                <td>Business logic belongs in controllers, not in view/ files.</td>
+                                <td>Ensures reusable and testable code.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Reusable Core</strong></td>
+                                <td>Use core/ for shared utilities like API clients, models, and themes.</td>
+                                <td>Reduces duplication and ensures consistency.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Minimal Dependencies</strong></td>
+                                <td>Avoid heavy third-party packages unless justified.</td>
+                                <td>Keeps the app lightweight and maintainable.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Consistent Naming</strong></td>
+                                <td>Follow naming conventions (e.g., *_view.dart, *_controller.dart).</td>
+                                <td>Improves code readability and navigation.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">🔄</span>Why GetX?</h2>
+            <div class="section-content">
+                <p>We use GetX for state management, routing, and dependency injection because it's:</p>
+                <div style="margin-top: 20px;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                        <div
+                            style="background: white; padding: 20px; border-radius: 10px; flex: 1; min-width: 200px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                            <h4 style="color: #2563eb; margin-bottom: 10px;">⚡ Lightweight</h4>
+                            <p>Minimal performance overhead.</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 20px; border-radius: 10px; flex: 1; min-width: 200px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                            <h4 style="color: #2563eb; margin-bottom: 10px;">🔄 Reactive</h4>
+                            <p>Automatically updates UI when data changes.</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 20px; border-radius: 10px; flex: 1; min-width: 200px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                            <h4 style="color: #2563eb; margin-bottom: 10px;">🎯 All-in-One</h4>
+                            <p>Simplifies state, routing, and dependency management in a single package.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">🧪</span>Testing Strategy</h2>
+            <div class="section-content">
+                <p>Testing ensures our app is robust and reliable. The test suite is organized as follows:</p>
+                <div class="code-block">
+                    <pre>test/
+├── unit/                       # Tests for business logic
+├── widget/                     # Tests for UI components
+├── integration/                # End-to-end user flow tests
+└── fixtures/                   # Mock data for testing</pre>
+                </div>
+
+                <h3 style="color: #2563eb; margin-top: 25px; margin-bottom: 15px;">Testing Goals</h3>
+                <ul style="margin-bottom: 20px;">
+                    <li><strong>Unit Tests:</strong> Verify individual functions and classes (e.g., controllers,
+                        services).</li>
+                    <li><strong>Widget Tests:</strong> Ensure UI components render correctly in isolation.</li>
+                    <li><strong>Integration Tests:</strong> Simulate real user journeys (e.g., login → post → comment).
+                    </li>
+                </ul>
+
+                <h4>Run Tests:</h4>
+                <div class="code-block">
+                    <pre>flutter test</pre>
+                </div>
+
+                <h3 style="color: #2563eb; margin-top: 25px; margin-bottom: 15px;">Best Practices:</h3>
+                <ul>
+                    <li>Write tests for new features before implementation.</li>
+                    <li>Use Mockito for mocking dependencies.</li>
+                    <li>Aim for at least 85% test coverage.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">👥</span>Meet the Team</h2>
+            <div class="section-content">
+                <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">🏆 Flutter Team at RootPointers
+                </h3>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-role">Team Lead</div>
+                        <div class="team-name">Wahab Sohail</div>
+                        <div class="team-desc">Architecture design, project oversight, code reviews</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-role">Senior Developer</div>
+                        <div class="team-name">Asad Ullah</div>
+                        <div class="team-desc">Core feature development, performance optimization, GitHub management
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-role">UI/UX Developer</div>
+                        <div class="team-name">M Sami</div>
+                        <div class="team-desc">Design system, UI implementation, user experience</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 25px; font-style: italic; color: #64748b;">We're passionate
+                    about building logical, performant, and beautiful Flutter apps!</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">🛠️</span>Tech Stack</h2>
+            <div class="section-content">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Tools</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Frontend</strong></td>
+                                <td>Flutter, Dart, Material Design 3</td>
+                            </tr>
+                            <tr>
+                                <td><strong>State Management</strong></td>
+                                <td>GetX</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Backend</strong></td>
+                                <td>Firebase (Auth, Firestore, Storage, Functions), RESTful APIs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Testing</strong></td>
+                                <td>Flutter Test, Mockito</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CI/CD</strong></td>
+                                <td>GitHub Actions, Fastlane</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analytics</strong></td>
+                                <td>Firebase Analytics, Crashlytics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Code Generation</strong></td>
+                                <td>build_runner, json_serializable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">📊</span>Project Stats</h2>
+            <div class="section-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">~15K</div>
+                        <div class="stat-label">Lines of Code</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Major Features</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Test Coverage</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Platforms</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #64748b;">Features: auth, profile, home, chat,
+                    notifications, search, etc. | Platforms: iOS, Android | Minimum Flutter Version: 3.5.3</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">🔄</span>Changelog</h2>
+            <div class="section-content">
+                <h3 style="color: #2563eb; margin-bottom: 15px;">🎉 Version 1.0.0 (2025-05-29)</h3>
+                <ul class="feature-list">
+                    <li>Initial release with core features</li>
+                    <li>Full authentication system (email, OTP, social login)</li>
+                    <li>Profile management with media uploads</li>
+                    <li>Social feed with real-time updates</li>
+                    <li>Modern UI with dark/light themes</li>
+                    <li>Comprehensive test suite</li>
+                    <li>Cross-platform optimization</li>
+                    <li>Performance improvements and bug fixes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">🤝</span>Contributing</h2>
+            <div class="section-content">
+                <p>We welcome contributions from the community! To contribute:</p>
+
+                <h3 style="color: #2563eb; margin-top: 25px; margin-bottom: 15px;">Steps to Contribute:</h3>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>1. Fork the Repository:</h4>
+                    <div class="code-block">
+                        <pre>git clone https://github.com/your-org/flutter-social-platform.git</pre>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>2. Create a Feature Branch:</h4>
+                    <div class="code-block">
+                        <pre>git checkout -b feature/your-feature</pre>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>3. Commit Changes:</h4>
+                    <div class="code-block">
+                        <pre>git commit -m "Add your feature"</pre>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>4. Push to the Branch:</h4>
+                    <div class="code-block">
+                        <pre>git push origin feature/your-feature</pre>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4>5. Open a Pull Request:</h4>
+                    <ul>
+                        <li>Ensure your code follows the architecture guidelines.</li>
+                        <li>Include tests for new features.</li>
+                        <li>Provide a clear description of your changes.</li>
+                    </ul>
+                </div>
+
+                <h3 style="color: #2563eb; margin-top: 25px; margin-bottom: 15px;">Contribution Guidelines:</h3>
+                <ul>
+                    <li>Follow the architecture rules (e.g., feature isolation, no logic in UI).</li>
+                    <li>Write clear, concise commit messages.</li>
+                    <li>Ensure tests pass before submitting a pull request.</li>
+                    <li>Respect the code style and naming conventions.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-title">📞 Support</div>
+            <div class="cta-subtitle">Got Questions? We're Here to Help!</div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <strong>📧 Email</strong><br>
+                    flutter@rootpointer.com
+                </div>
+                <div class="contact-item">
+                    <strong>💬 Slack</strong><br>
+                    #flutter-social-platform
+                </div>
+                <div class="contact-item">
+                    <strong>📖 Documentation</strong><br>
+                    Wiki Pages
+                </div>
+                <div class="contact-item">
+                    <strong>🐛 Issues</strong><br>
+                    GitHub Issues
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">📄</span>License</h2>
+            <div class="section-content">
+                <p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-emoji">🙏</span>Acknowledgments</h2>
+            <div class="section-content">
+                <ul class="feature-list">
+                    <li><strong>Flutter Team:</strong> For the amazing framework that powers this app.</li>
+                    <li><strong>GetX Community:</strong> For providing a clean and powerful state management solution.
+                    </li>
+                    <li><strong>Firebase:</strong> For robust backend services.</li>
+                    <li><strong>Open Source Community:</strong> For tools and libraries that enhance our development.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-title">⭐ Star this repo if you find it helpful!</div>
+            <div class="cta-subtitle">Built with ❤️ by the Flutter Team at RootPointers</div>
+            <div style="font-style: italic; opacity: 0.9; margin-top: 10px;">Crafting the future of social platforms,
+                one feature at a time.</div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling animation on load
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('.section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'all 0.6s ease-out';
+                observer.observe(section);
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.feature-card, .team-card, .stat-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
