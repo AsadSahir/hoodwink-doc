@@ -1364,7 +1364,6 @@ cd hood-wink</pre>
         </div>
 
         <script>
-            // Function to set the active tab based on tabName
             function setActiveTab(tabName) {
                 const tabButtons = document.querySelectorAll(".tab-button");
                 tabButtons.forEach((btn) => btn.classList.remove("active"));
@@ -1378,22 +1377,20 @@ cd hood-wink</pre>
                 tabPanes.forEach((pane) => {
                     pane.style.display = pane.id === tabName ? "block" : "none";
                 });
+
+                // ✅ Fix: update badge hrefs
+                const tabDependentBadges = document.querySelectorAll('.badge[data-tab-dependent="true"]');
+                tabDependentBadges.forEach(badge => {
+                    const section = badge.getAttribute('data-section');
+                    badge.setAttribute('href', `#${tabName}-${section}`);
+                });
             }
+
 
             // Function to handle tab switching when buttons are clicked
             function switchTab(event, tabName) {
                 setActiveTab(tabName);
             }
-
-            // On page load, check the 'tab' query parameter and set the active tab
-            document.addEventListener('DOMContentLoaded', function () {
-                const urlParams = new URLSearchParams(window.location.search);
-                const tabParam = urlParams.get('tab');
-                const validTabs = ['frontend', 'backend'];
-                const defaultTab = 'frontend'; // Default to frontend if no or invalid parameter
-                const tabToActivate = validTabs.includes(tabParam) ? tabParam : defaultTab;
-                setActiveTab(tabToActivate);
-            });
             // Add smooth scrolling animation on load
             document.addEventListener('DOMContentLoaded', function () {
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1438,6 +1435,7 @@ cd hood-wink</pre>
                     });
                 });
             });
+
         </script>
 </body>
 
