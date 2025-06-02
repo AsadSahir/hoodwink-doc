@@ -540,7 +540,7 @@
 │   │   ├── otp/
 │   │   ├── reset_password/
 │   │   ├── password_change/
-│   │   └── services/           # Feature-specific API calls
+│   │   └── repository/           # Feature-specific API calls
 │   │       └── auth_repository.dart
 │   ├── 👤 profile/             # Profile management
 │   │   ├── view/
@@ -548,9 +548,8 @@
 │   │   └── services/
 │   ├── 🏠 home/                # Social feed and interactions
 │   │   ├── view/
-│   │   ├── controller/
-│   │   └── services/
-│   └── [other features]/       # e.g., chat, notifications, search
+│   │   └── controller/
+│   └── [other features]/       # e.g., wink, notifications, search
 │
 ├── 🏛️ core/                    # Shared utilities
 │   ├── 🌐 api_services/        # Network and API handling
@@ -753,14 +752,14 @@ cd hood-wink</pre>
                                 <td><strong>Backend</strong></td>
                                 <td>RESTful APIs, Custom Backend Services</td>
                             </tr>
-                            <tr>
+<!--                             <tr>
                                 <td><strong>Testing</strong></td>
                                 <td>Flutter Test, Mockito</td>
-                            </tr>
-                            <tr>
+                            </tr> -->
+<!--                             <tr>
                                 <td><strong>CI/CD</strong></td>
                                 <td>GitHub Actions, Fastlane</td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td><strong>Analytics</strong></td>
                                 <td>Custom Analytics Integration</td>
@@ -780,24 +779,24 @@ cd hood-wink</pre>
             <div class="section-content">
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-number">~12K</div>
+                        <div class="stat-number">~13K</div>
                         <div class="stat-label">Lines of Code</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">6</div>
+                        <div class="stat-number">7+</div>
                         <div class="stat-label">Major Features</div>
                     </div>
-                    <div class="stat-card">
+<!--                     <div class="stat-card">
                         <div class="stat-number">80%</div>
                         <div class="stat-label">Test Coverage</div>
-                    </div>
+                    </div> -->
                     <div class="stat-card">
                         <div class="stat-number">2</div>
                         <div class="stat-label">Platforms</div>
                     </div>
                 </div>
-                <p style="text-align: center; margin-top: 20px; color: #64748b;">Features: auth, profile, home, chat,
-                    notifications, search | Platforms: iOS, Android | Minimum Flutter Version: 3.5.3</p>
+                <p style="text-align: center; margin-top: 20px; color: #64748b;">Features: auth, profile, home, winks,
+                    notifications, search, setting | Platforms: iOS, Android | Minimum Flutter Version: 3.5.3</p>
             </div>
         </div>
 
@@ -810,8 +809,9 @@ cd hood-wink</pre>
                     <li>Complete authentication system</li>
                     <li>Profile management with media support</li>
                     <li>Social feed with real-time updates</li>
-                    <li>Modern UI with theme support</li>
-                    <li>Comprehensive test suite</li>
+                    <li>Modern UI<!-- with theme support   --></li>
+                   
+<!--                     <li>Comprehensive test suite</li> -->
                     <li>Cross-platform optimization</li>
                     <li>Performance improvements and bug fixes</li>
                 </ul>
