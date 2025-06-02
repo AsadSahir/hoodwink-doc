@@ -20,7 +20,8 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             scroll-behavior: smooth;
-            scroll-padding-top: 100px; /* Add padding to account for fixed header */
+            scroll-padding-top: 100px;
+            /* Add padding to account for fixed header */
         }
 
         .container {
@@ -295,6 +296,90 @@
             background-clip: text;
         }
 
+        .tab-container {
+            margin: 50px 0;
+            position: relative;
+        }
+
+        .tab-header {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 12px 12px 0 0;
+            border: 1px solid #e2e8f0;
+            border-bottom: none;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px 30px;
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tab-button:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .tab-content {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0 0 16px 16px;
+            position: relative;
+            overflow: hidden;
+            margin-top: -1px; /* To overlap with tab header border */
+        }
+
+        .tab-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .tab-pane {
+            padding: 30px;
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
         .stat-label {
             color: #64748b;
             font-weight: 600;
@@ -403,6 +488,11 @@
                 flex-direction: wrap;
                 align-items: center;
             }
+
+            .tab-button {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -496,338 +586,750 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
 
-        <div class="section" id="architecture">
-            <h2 class="section-title"><span class="section-emoji">🏗️</span>Architecture Overview</h2>
-            <div class="section-content">
-                <p>We use a feature-first clean architecture, which organizes the codebase like a modular city:</p>
-                <br>
-                <div class="architecture-diagram">
-                    <h4>🏬 Features: Independent modules (e.g., auth, profile, home) act like self-contained
-                        neighborhoods, each with its own UI, logic, and services.</h4>
-                    <h4>🏛️ Core: Shared utilities (API clients, models, themes) serve as the city's infrastructure.
-                    </h4>
-                    <h4>🧱 Widgets: Reusable UI components are like building blocks used across features.</h4>
-                    <h4>⚙️ Services: External APIs and backend connections power the app's functionality.</h4>
-                </div>
-                <h3 style="margin-top: 20px; color: #2563eb;">Why This Architecture?</h3>
-                <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
-                    <li style="padding: 5px 0;"><strong>Modular:</strong> Add new features without disrupting existing
-                        ones.</li>
-                    <li style="padding: 5px 0;"><strong>Scalable:</strong> Supports large teams and complex apps.</li>
-                    <li style="padding: 5px 0;"><strong>Maintainable:</strong> Clear separation of concerns reduces bugs
-                        and simplifies debugging.</li>
-                    <li style="padding: 5px 0;"><strong>Collaborative:</strong> Developers can work on isolated features
-                        simultaneously.</li>
-                </ul>
+
+
+
+
+        <!-- New Tabbed Section for Frontend/Backend Documentation -->
+        <div class="tab-container" id="tech-docs">
+            <div class="tab-header">
+                <button class="tab-button active" onclick="switchTab(event, 'frontend')">
+                    📱 Frontend
+                </button>
+                <button class="tab-button" onclick="switchTab(event, 'backend')">
+                    ⚙️ Backend
+                </button>
             </div>
-        </div>
-
-        <div class="section" id="project-structure">
-            <h2 class="section-title"><span class="section-emoji">📁</span>Project Structure</h2>
-            <div class="section-content">
-                <p>The codebase is organized for clarity and ease of navigation. Here's the structure:</p>
-                <div class="code-block">
-                    <pre>lib/
-├── 🎯 features/                 # Feature modules (self-contained)
-│   ├── 🔐 auth/                # Authentication feature
-│   │   ├── login/
-│   │   │   ├── view/           # UI components
-│   │   │   │   └── login_view.dart
-│   │   │   └── controller/     # Business logic
-│   │   │       └── login_controller.dart
-│   │   ├── signup/
-│   │   ├── otp/
-│   │   ├── reset_password/
-│   │   ├── password_change/
-│   │   └── repository/           # Feature-specific API calls
-│   │       └── auth_repository.dart
-│   ├── 👤 profile/             # Profile management
-│   │   ├── view/
-│   │   ├── controller/
-│   │   └── services/
-│   ├── 🏠 home/                # Social feed and interactions
-│   │   ├── view/
-│   │   └── controller/
-│   └── [other features]/       # e.g., wink, notifications, search
-│
-├── 🏛️ core/                    # Shared utilities
-│   ├── 🌐 api_services/        # Network and API handling
-│   │   ├── api_client.dart
-│   │   ├── interceptors/
-│   │   └── endpoints/
-│   ├── 📋 constants/           # App-wide configurations
-│   │   ├── app_constants.dart
-│   │   ├── api_constants.dart
-│   │   └── theme_constants.dart
-│   ├── 🔧 extensions/          # Dart utility extensions
-│   │   ├── string_extensions.dart
-│   │   └── widget_extensions.dart
-│   ├── 🌍 global/              # Global state and controllers
-│   │   ├── app_controller.dart
-│   │   └── theme_controller.dart
-│   ├── 🧩 mixins/              # Reusable code snippets
-│   │   ├── validation_mixin.dart
-│   │   └── loading_mixin.dart
-│   ├── 📊 models/              # Data models
-│   │   ├── user_model.dart
-│   │   └── post_model.dart
-│   ├── 🎨 theme/               # App styling and themes
-│   │   ├── app_theme.dart
-│   │   ├── colors.dart
-│   │   └── text_styles.dart
-│   └── 🛠️ utils/               # Helper functions
-│       ├── validators.dart
-│       ├── helpers.dart
-│       └── formatters.dart
-│
-├── 🧱 widgets/                 # Reusable UI components
-│   ├── app_button.dart
-│   ├── app_textfield.dart
-│   ├── app_divider.dart
-│   ├── app_iconbox.dart
-│   └── custom_scaffold.dart
-│
-├── 📱 main.dart                # App entry point
-├── 🛠️ app.dart                 # App configuration
-└── 🎨 assets.dart              # Asset management</pre>
-                </div>
-            </div>
-        </div>
-
-        <div class="section" id="quick-start">
-            <h2 class="section-title"><span class="section-emoji">🚀</span>Quick Start for New Developers</h2>
-            <div class="section-content">
-                <p style="font-size: 1.1rem; margin-bottom: 20px;">Welcome to the Hood Wink project! Follow these steps
-                    to set up the project and start contributing:</p>
-
-                <h3 style="color: #2563eb; margin-bottom: 15px;">📋 Prerequisites</h3>
-                <ul style="margin-bottom: 20px;">
-                    <li><strong>Flutter SDK:</strong> Version ^3.5.3</li>
-                    <li><strong>Dart SDK:</strong> Included with Flutter</li>
-                    <li><strong>IDE:</strong> Android Studio or VS Code with Flutter/Dart plugins</li>
-                    <li><strong>Git:</strong> For version control</li>
-                </ul>
-
-                <h3 style="color: #2563eb; margin-bottom: 15px;">🛠️ Setup Instructions</h3>
-
-                <div style="margin-bottom: 20px;">
-                    <h4>1. Clone the Repository</h4>
-                    <div class="code-block">
-                        <pre>git clone https://github.com/roootpointers/hood_wink
-cd hood-wink</pre>
+            <div class="tab-content">
+                <!-- Frontend Tab -->
+                <div id="frontend" class="tab-pane active">
+                    <h3 style="color: #2563eb; margin-bottom: 20px; font-size: 1.8rem;">📱 Frontend Documentation</h3>
+                    <p style="margin-bottom: 20px;">The Hood Wink frontend is built with Flutter, following clean
+                        architecture
+                        principles and modern development practices.</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3 class="feature-title">🎨 UI Framework</h3>
+                            <ul class="feature-list">
+                                <li>Flutter SDK ^3.5.3</li>
+                                <li>Material Design 3 components</li>
+                                <li>Custom reusable widgets</li>
+                                <li>Responsive layouts for all devices</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="feature-title">🔄 State Management</h3>
+                            <ul class="feature-list">
+                                <li>GetX for reactive state management</li>
+                                <li>Controller-based architecture</li>
+                                <li>Dependency injection with GetX</li>
+                                <li>Reactive bindings and observers</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="feature-title">🌐 API Integration</h3>
+                            <ul class="feature-list">
+                                <li>RESTful API consumption</li>
+                                <li>HTTP interceptors for auth</li>
+                                <li>Error handling and retry logic</li>
+                                <li>JSON serialization with code generation</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="feature-title">📂 Architecture</h3>
+                            <ul class="feature-list">
+                                <li>Feature-first clean architecture</li>
+                                <li>Separation of concerns</li>
+                                <li>Repository pattern for data access</li>
+                                <li>MVVM pattern with GetX controllers</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div style="margin-bottom: 20px;">
-                    <h4>2. Install Dependencies</h4>
-                    <div class="code-block">
-                        <pre>flutter pub get</pre>
+                    <h4 style="color: #2563eb; margin: 30px 0 15px 0;">Key Frontend Technologies:</h4>
+                    <div class="tech-stack">
+                        <span class="tech-item">Flutter</span>
+                        <span class="tech-item">Dart</span>
+                        <span class="tech-item">GetX</span>
+                        <span class="tech-item">Material Design 3</span>
+                        <span class="tech-item">HTTP</span>
+                        <span class="tech-item">JSON Serializable</span>
+                        <span class="tech-item">Build Runner</span>
                     </div>
-                </div>
 
-                <div style="margin-bottom: 20px;">
-                    <h4>3. Configure API Endpoints</h4>
-                    <p>Update the API endpoints in the configuration files with the provided credentials.</p>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <h4>4. Run Code Generation</h4>
-                    <div class="code-block">
-                        <pre>flutter packages pub run build_runner build --delete-conflicting-outputs</pre>
+                    <div class="section" id="architecture">
+                        <h2 class="section-title"><span class="section-emoji">🏗️</span>Architecture Overview</h2>
+                        <div class="section-content">
+                            <p>We use a feature-first clean architecture, which organizes the codebase like a modular
+                                city:</p>
+                            <br>
+                            <div class="architecture-diagram">
+                                <h4>🏬 Features: Independent modules (e.g., auth, profile, home) act like self-contained
+                                    neighborhoods, each with its own UI, logic, and services.</h4>
+                                <h4>🏛️ Core: Shared utilities (API clients, models, themes) serve as the city's
+                                    infrastructure.
+                                </h4>
+                                <h4>🧱 Widgets: Reusable UI components are like building blocks used across features.
+                                </h4>
+                                <h4>⚙️ Services: External APIs and backend connections power the app's functionality.
+                                </h4>
+                            </div>
+                            <h3 style="margin-top: 20px; color: #2563eb;">Why This Architecture?</h3>
+                            <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
+                                <li style="padding: 5px 0;"><strong>Modular:</strong> Add new features without
+                                    disrupting
+                                    existing
+                                    ones.</li>
+                                <li style="padding: 5px 0;"><strong>Scalable:</strong> Supports large teams and complex
+                                    apps.
+                                </li>
+                                <li style="padding: 5px 0;"><strong>Maintainable:</strong> Clear separation of concerns
+                                    reduces
+                                    bugs
+                                    and simplifies debugging.</li>
+                                <li style="padding: 5px 0;"><strong>Collaborative:</strong> Developers can work on
+                                    isolated
+                                    features
+                                    simultaneously.</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div style="margin-bottom: 20px;">
-                    <h4>5. Launch the App</h4>
-                    <div class="code-block">
-                        <pre>flutter run</pre>
+                    <div class="section" id="project-structure">
+                        <h2 class="section-title"><span class="section-emoji">📁</span>Project Structure</h2>
+                        <div class="section-content">
+                            <p>The codebase is organized for clarity and ease of navigation. Here's the structure:</p>
+                            <div class="code-block">
+                                <pre>lib/
+                                  ├── 🎯 features/                 # Feature modules (self-contained)
+                                  │   ├── 🔐 auth/                # Authentication feature
+                                  │   │   ├── login/
+                                  │   │   │   ├── view/           # UI components
+                                  │   │   │   │   └── login_view.dart
+                                  │   │   │   └── controller/     # Business logic
+                                  │   │   │       └── login_controller.dart
+                                  │   │   ├── signup/
+                                  │   │   ├── otp/
+                                  │   │   ├── reset_password/
+                                  │   │   ├── password_change/
+                                  │   │   └── repository/           # Feature-specific API calls
+                                  │   │       └── auth_repository.dart
+                                  │   ├── 👤 profile/             # Profile management
+                                  │   │   ├── view/
+                                  │   │   ├── controller/
+                                  │   │   └── services/
+                                  │   ├── 🏠 home/                # Social feed and interactions
+                                  │   │   ├── view/
+                                  │   │   └── controller/
+                                  │   └── [other features]/       # e.g., wink, notifications, search
+                                  │
+                                  ├── 🏛️ core/                    # Shared utilities
+                                  │   ├── 🌐 api_services/        # Network and API handling
+                                  │   │   ├── api_client.dart
+                                  │   │   ├── interceptors/
+                                  │   │   └── endpoints/
+                                  │   ├── 📋 constants/           # App-wide configurations
+                                  │   │   ├── app_constants.dart
+                                  │   │   ├── api_constants.dart
+                                  │   │   └── theme_constants.dart
+                                  │   ├── 🔧 extensions/          # Dart utility extensions
+                                  │   │   ├── string_extensions.dart
+                                  │   │   └── widget_extensions.dart
+                                  │   ├── 🌍 global/              # Global state and controllers
+                                  │   │   ├── app_controller.dart
+                                  │   │   └── theme_controller.dart
+                                  │   ├── 🧩 mixins/              # Reusable code snippets
+                                  │   │   ├── validation_mixin.dart
+                                  │   │   └── loading_mixin.dart
+                                  │   ├── 📊 models/              # Data models
+                                  │   │   ├── user_model.dart
+                                  │   │   └── post_model.dart
+                                  │   ├── 🎨 theme/               # App styling and themes
+                                  │   │   ├── app_theme.dart
+                                  │   │   ├── colors.dart
+                                  │   │   └── text_styles.dart
+                                  │   └── 🛠️ utils/               # Helper functions
+                                  │       ├── validators.dart
+                                  │       ├── helpers.dart
+                                  │       └── formatters.dart
+                                  │
+                                  ├── 🧱 widgets/                 # Reusable UI components
+                                  │   ├── app_button.dart
+                                  │   ├── app_textfield.dart
+                                  │   ├── app_divider.dart
+                                  │   ├── app_iconbox.dart
+                                  │   └── custom_scaffold.dart
+                                  │
+                                  ├── 📱 main.dart                # App entry point
+                                  ├── 🛠️ app.dart                 # App configuration
+                                  └── 🎨 assets.dart              # Asset management</pre>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <h3 style="color: #2563eb; margin-top: 25px; margin-bottom: 15px;">💡 Tips for New Developers</h3>
-                <ul>
-                    <li><strong>Start with main.dart:</strong> Understand app initialization and entry point.</li>
-                    <li><strong>Explore features/:</strong> Each folder is a self-contained module.</li>
-                    <li><strong>Use core/utils/:</strong> Contains helper functions for validation, formatting, and
-                        more.</li>
-                    <li><strong>Check widgets/:</strong> Reusable UI components to speed up development.</li>
-                    <li><strong>Ask Questions:</strong> Reach out to the team lead for assistance.</li>
-                </ul>
-            </div>
-        </div>
+                    <div class="section" id="quick-start">
+                        <h2 class="section-title"><span class="section-emoji">🚀</span>Quick Start for New Developers
+                        </h2>
+                        <div class="section-content">
+                            <p style="font-size: 1.1rem; margin-bottom: 20px;">Welcome to the Hood Wink project! Follow
+                                these
+                                steps
+                                to set up the project and start contributing:</p>
 
-        <div class="section" id="guidelines">
-            <h2 class="section-title"><span class="section-emoji">📐</span>Architecture Guidelines</h2>
-            <div class="section-content">
-                <p>To maintain a clean and consistent codebase, adhere to these principles:</p>
-                <div class="table-container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Principle</th>
-                                <th>Description</th>
-                                <th>Why It Matters</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Feature Isolation</strong></td>
-                                <td>Each feature (e.g., auth, profile) is self-contained with its own views,
-                                    controllers, and services.</td>
-                                <td>Prevents code tangling and simplifies debugging.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>No Logic in UI</strong></td>
-                                <td>Business logic belongs in controllers, not in view/ files.</td>
-                                <td>Ensures reusable and testable code.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Reusable Core</strong></td>
-                                <td>Use core/ for shared utilities like API clients, models, and themes.</td>
-                                <td>Reduces duplication and ensures consistency.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Minimal Dependencies</strong></td>
-                                <td>Avoid heavy third-party packages unless justified.</td>
-                                <td>Keeps the app lightweight and maintainable.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Consistent Naming</strong></td>
-                                <td>Follow naming conventions (e.g., *_view.dart, *_controller.dart).</td>
-                                <td>Improves code readability and navigation.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+                            <h3 style="color: #2563eb; margin-bottom: 15px;">📋 Prerequisites</h3>
+                            <ul style="margin-bottom: 20px;">
+                                <li><strong>Flutter SDK:</strong> Version ^3.5.3</li>
+                                <li><strong>Dart SDK:</strong> Included with Flutter</li>
+                                <li><strong>IDE:</strong> Android Studio or VS Code with Flutter/Dart plugins</li>
+                                <li><strong>Git:</strong> For version control</li>
+                            </ul>
 
-        <div class="section" id="team">
-            <h2 class="section-title"><span class="section-emoji">👥</span>Meet the Team</h2>
-            <div class="section-content">
-                <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">🏆 Flutter Team at RootPointers</h3>
-                <div class="team-grid">
-                    <div class="team-card">
-                        <div class="team-role">Team Lead</div>
-                        <div class="team-name">Wahab Sohail</div>
-                        <div class="team-desc">Architecture design, project oversight, code reviews</div>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-role">Senior Developer</div>
-                        <div class="team-name">Asad Ullah</div>
-                        <div class="team-desc">Core feature development, performance optimization, GitHub management</div>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-role">UI/UX Developer</div>
-                        <div class="team-name">M Sami</div>
-                        <div class="team-desc">Design system, UI implementation, user experience</div>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 25px; font-style: italic; color: #64748b;">We're passionate about building logical, performant, and beautiful Flutter apps!</p>
-            </div>
-        </div>
+                            <h3 style="color: #2563eb; margin-bottom: 15px;">🛠️ Setup Instructions</h3>
 
-        <div class="section" id="tech-stack">
-            <h2 class="section-title"><span class="section-emoji">🛠️</span>Tech Stack</h2>
-            <div class="section-content">
-                <div class="table-container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Tools</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Frontend</strong></td>
-                                <td>Flutter, Dart, Material Design 3</td>
-                            </tr>
-                            <tr>
-                                <td><strong>State Management</strong></td>
-                                <td>GetX</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Backend</strong></td>
-                                <td>RESTful APIs, Custom Backend Services</td>
-                            </tr>
-<!--                             <tr>
-                                <td><strong>Testing</strong></td>
-                                <td>Flutter Test, Mockito</td>
-                            </tr> -->
-<!--                             <tr>
-                                <td><strong>CI/CD</strong></td>
-                                <td>GitHub Actions, Fastlane</td>
-                            </tr> -->
-                            <tr>
-                                <td><strong>Analytics</strong></td>
-                                <td>Custom Analytics Integration</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Code Generation</strong></td>
-                                <td>build_runner, json_serializable</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+                            <div style="margin-bottom: 20px;">
+                                <h4>1. Clone the Repository</h4>
+                                <div class="code-block">
+                                    <pre>git clone https://github.com/roootpointers/hood_wink
+                             cd hood-wink</pre>
+                                </div>
+                            </div>
 
-        <div class="section" id="stats">
-            <h2 class="section-title"><span class="section-emoji">📊</span>Project Stats</h2>
-            <div class="section-content">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">~14K</div>
-                        <div class="stat-label">Lines of Code</div>
+                            <div style="margin-bottom: 20px;">
+                                <h4>2. Install Dependencies</h4>
+                                <div class="code-block">
+                                    <pre>flutter pub get</pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>3. Configure API Endpoints</h4>
+                                <p>Update the API endpoints in the configuration files with the provided credentials.
+                                </p>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>4. Run Code Generation</h4>
+                                <div class="code-block">
+                                    <pre>flutter packages pub run build_runner build --delete-conflicting-outputs</pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>5. Launch the App</h4>
+                                <div class="code-block">
+                                    <pre>flutter run</pre>
+                                </div>
+                            </div>
+
+                            <h3 style="color: #2563eb; margin-top: 25px; margin-bottom: 15px;">💡 Tips for New
+                                Developers</h3>
+                            <ul>
+                                <li><strong>Start with main.dart:</strong> Understand app initialization and entry
+                                    point.</li>
+                                <li><strong>Explore features/:</strong> Each folder is a self-contained module.</li>
+                                <li><strong>Use core/utils/:</strong> Contains helper functions for validation,
+                                    formatting, and
+                                    more.</li>
+                                <li><strong>Check widgets/:</strong> Reusable UI components to speed up development.
+                                </li>
+                                <li><strong>Ask Questions:</strong> Reach out to the team lead for assistance.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">7+</div>
-                        <div class="stat-label">Major Features</div>
+
+                    <div class="section" id="guidelines">
+                        <h2 class="section-title"><span class="section-emoji">📐</span>Architecture Guidelines</h2>
+                        <div class="section-content">
+                            <p>To maintain a clean and consistent codebase, adhere to these principles:</p>
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Principle</th>
+                                            <th>Description</th>
+                                            <th>Why It Matters</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Feature Isolation</strong></td>
+                                            <td>Each feature (e.g., auth, profile) is self-contained with its own views,
+                                                controllers, and services.</td>
+                                            <td>Prevents code tangling and simplifies debugging.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>No Logic in UI</strong></td>
+                                            <td>Business logic belongs in controllers, not in view/ files.</td>
+                                            <td>Ensures reusable and testable code.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Reusable Core</strong></td>
+                                            <td>Use core/ for shared utilities like API clients, models, and themes.
+                                            </td>
+                                            <td>Reduces duplication and ensures consistency.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Minimal Dependencies</strong></td>
+                                            <td>Avoid heavy third-party packages unless justified.</td>
+                                            <td>Keeps the app lightweight and maintainable.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Consistent Naming</strong></td>
+                                            <td>Follow naming conventions (e.g., *_view.dart, *_controller.dart).</td>
+                                            <td>Improves code readability and navigation.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-<!--                     <div class="stat-card">
+
+                    <div class="section" id="stats">
+                        <h2 class="section-title"><span class="section-emoji">📊</span>Project Stats</h2>
+                        <div class="section-content">
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-number">~14K</div>
+                                    <div class="stat-label">Lines of Code</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">7+</div>
+                                    <div class="stat-label">Major Features</div>
+                                </div>
+                                <!--                     <div class="stat-card">
                         <div class="stat-number">80%</div>
                         <div class="stat-label">Test Coverage</div>
                     </div> -->
-                    <div class="stat-card">
-                        <div class="stat-number">2</div>
-                        <div class="stat-label">Platforms</div>
+                                <div class="stat-card">
+                                    <div class="stat-number">2</div>
+                                    <div class="stat-label">Platforms</div>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 20px; color: #64748b;">Features: auth, profile,
+                                home,
+                                winks,
+                                notifications, search, setting | Platforms: iOS, Android | Minimum Flutter Version:
+                                3.5.3</p>
+                        </div>
+                    </div>
+
+                    <div class="section" id="changelog">
+                        <h2 class="section-title"><span class="section-emoji">🔄</span>Changelog</h2>
+                        <div class="section-content">
+                            <h3 style="color: #2563eb; margin-bottom: 15px;">🎉 Version 1.0.0 (2024-03-20)</h3>
+                            <ul class="feature-list">
+                                <li>Initial release with core features</li>
+                                <li>Complete authentication system</li>
+                                <li>Profile management with media support</li>
+                                <li>Social feed with real-time updates</li>
+                                <li>Modern UI<!-- with theme support   --></li>
+
+                                <!--                     <li>Comprehensive test suite</li> -->
+                                <li>Cross-platform optimization</li>
+                                <li>Performance improvements and bug fixes</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <p style="text-align: center; margin-top: 20px; color: #64748b;">Features: auth, profile, home, winks,
-                    notifications, search, setting | Platforms: iOS, Android | Minimum Flutter Version: 3.5.3</p>
-            </div>
-        </div>
 
-        <div class="section" id="changelog">
-            <h2 class="section-title"><span class="section-emoji">🔄</span>Changelog</h2>
-            <div class="section-content">
-                <h3 style="color: #2563eb; margin-bottom: 15px;">🎉 Version 1.0.0 (2024-03-20)</h3>
-                <ul class="feature-list">
-                    <li>Initial release with core features</li>
-                    <li>Complete authentication system</li>
-                    <li>Profile management with media support</li>
-                    <li>Social feed with real-time updates</li>
-                    <li>Modern UI<!-- with theme support   --></li>
-                   
-<!--                     <li>Comprehensive test suite</li> -->
-                    <li>Cross-platform optimization</li>
-                    <li>Performance improvements and bug fixes</li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="cta-section" id="support">
-            <div class="cta-title">📞 Support</div>
-            <div class="cta-subtitle">Need Help? Contact the Team!</div>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <strong>📧 Email</strong><br>
-                    flutter@rootpointers.com
+                <!-- Backend Tab -->
+                <div id="backend" class="tab-pane">
+                    <h3 style="color: #2563eb; margin-bottom: 20px; font-size: 1.8rem;">⚙️ Backend Documentation</h3>
+                    <p style="margin-bottom: 20px;">The Hood Wink backend provides robust APIs and services to support
+                        the mobile application with scalable architecture.</p>
+
+
+                    <div class="section" id="architecture">
+                        <h2 class="section-title"><span class="section-emoji">🏗️</span>Architecture Overview</h2>
+                        <div class="section-content">
+                            <p>We use a feature-first clean architecture, which organizes the codebase like a modular
+                                city:</p>
+                            <br>
+                            <div class="architecture-diagram">
+                                <h4>🏬 Features: Independent modules (e.g., auth, profile, home) act like self-contained
+                                    neighborhoods, each with its own UI, logic, and services.</h4>
+                                <h4>🏛️ Core: Shared utilities (API clients, models, themes) serve as the city's
+                                    infrastructure.
+                                </h4>
+                                <h4>🧱 Widgets: Reusable UI components are like building blocks used across features.
+                                </h4>
+                                <h4>⚙️ Services: External APIs and backend connections power the app's functionality.
+                                </h4>
+                            </div>
+                            <h3 style="margin-top: 20px; color: #2563eb;">Why This Architecture?</h3>
+                            <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
+                                <li style="padding: 5px 0;"><strong>Modular:</strong> Add new features without
+                                    disrupting
+                                    existing
+                                    ones.</li>
+                                <li style="padding: 5px 0;"><strong>Scalable:</strong> Supports large teams and complex
+                                    apps.
+                                </li>
+                                <li style="padding: 5px 0;"><strong>Maintainable:</strong> Clear separation of concerns
+                                    reduces
+                                    bugs
+                                    and simplifies debugging.</li>
+                                <li style="padding: 5px 0;"><strong>Collaborative:</strong> Developers can work on
+                                    isolated
+                                    features
+                                    simultaneously.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="section" id="project-structure">
+                        <h2 class="section-title"><span class="section-emoji">📁</span>Project Structure</h2>
+                        <div class="section-content">
+                            <p>The codebase is organized for clarity and ease of navigation. Here's the structure:</p>
+                            <div class="code-block">
+                                <pre>lib/
+                                  ├── 🎯 features/                 # Feature modules (self-contained)
+                                  │   ├── 🔐 auth/                # Authentication feature
+                                  │   │   ├── login/
+                                  │   │   │   ├── view/           # UI components
+                                  │   │   │   │   └── login_view.dart
+                                  │   │   │   └── controller/     # Business logic
+                                  │   │   │       └── login_controller.dart
+                                  │   │   ├── signup/
+                                  │   │   ├── otp/
+                                  │   │   ├── reset_password/
+                                  │   │   ├── password_change/
+                                  │   │   └── repository/           # Feature-specific API calls
+                                  │   │       └── auth_repository.dart
+                                  │   ├── 👤 profile/             # Profile management
+                                  │   │   ├── view/
+                                  │   │   ├── controller/
+                                  │   │   └── services/
+                                  │   ├── 🏠 home/                # Social feed and interactions
+                                  │   │   ├── view/
+                                  │   │   └── controller/
+                                  │   └── [other features]/       # e.g., wink, notifications, search
+                                  │
+                                  ├── 🏛️ core/                    # Shared utilities
+                                  │   ├── 🌐 api_services/        # Network and API handling
+                                  │   │   ├── api_client.dart
+                                  │   │   ├── interceptors/
+                                  │   │   └── endpoints/
+                                  │   ├── 📋 constants/           # App-wide configurations
+                                  │   │   ├── app_constants.dart
+                                  │   │   ├── api_constants.dart
+                                  │   │   └── theme_constants.dart
+                                  │   ├── 🔧 extensions/          # Dart utility extensions
+                                  │   │   ├── string_extensions.dart
+                                  │   │   └── widget_extensions.dart
+                                  │   ├── 🌍 global/              # Global state and controllers
+                                  │   │   ├── app_controller.dart
+                                  │   │   └── theme_controller.dart
+                                  │   ├── 🧩 mixins/              # Reusable code snippets
+                                  │   │   ├── validation_mixin.dart
+                                  │   │   └── loading_mixin.dart
+                                  │   ├── 📊 models/              # Data models
+                                  │   │   ├── user_model.dart
+                                  │   │   └── post_model.dart
+                                  │   ├── 🎨 theme/               # App styling and themes
+                                  │   │   ├── app_theme.dart
+                                  │   │   ├── colors.dart
+                                  │   │   └── text_styles.dart
+                                  │   └── 🛠️ utils/               # Helper functions
+                                  │       ├── validators.dart
+                                  │       ├── helpers.dart
+                                  │       └── formatters.dart
+                                  │
+                                  ├── 🧱 widgets/                 # Reusable UI components
+                                  │   ├── app_button.dart
+                                  │   ├── app_textfield.dart
+                                  │   ├── app_divider.dart
+                                  │   ├── app_iconbox.dart
+                                  │   └── custom_scaffold.dart
+                                  │
+                                  ├── 📱 main.dart                # App entry point
+                                  ├── 🛠️ app.dart                 # App configuration
+                                  └── 🎨 assets.dart              # Asset management</pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section" id="quick-start">
+                        <h2 class="section-title"><span class="section-emoji">🚀</span>Quick Start for New Developers
+                        </h2>
+                        <div class="section-content">
+                            <p style="font-size: 1.1rem; margin-bottom: 20px;">Welcome to the Hood Wink project! Follow
+                                these
+                                steps
+                                to set up the project and start contributing:</p>
+
+                            <h3 style="color: #2563eb; margin-bottom: 15px;">📋 Prerequisites</h3>
+                            <ul style="margin-bottom: 20px;">
+                                <li><strong>Flutter SDK:</strong> Version ^3.5.3</li>
+                                <li><strong>Dart SDK:</strong> Included with Flutter</li>
+                                <li><strong>IDE:</strong> Android Studio or VS Code with Flutter/Dart plugins</li>
+                                <li><strong>Git:</strong> For version control</li>
+                            </ul>
+
+                            <h3 style="color: #2563eb; margin-bottom: 15px;">🛠️ Setup Instructions</h3>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>1. Clone the Repository</h4>
+                                <div class="code-block">
+                                    <pre>git clone https://github.com/roootpointers/hood_wink
+                             cd hood-wink</pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>2. Install Dependencies</h4>
+                                <div class="code-block">
+                                    <pre>flutter pub get</pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>3. Configure API Endpoints</h4>
+                                <p>Update the API endpoints in the configuration files with the provided credentials.
+                                </p>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>4. Run Code Generation</h4>
+                                <div class="code-block">
+                                    <pre>flutter packages pub run build_runner build --delete-conflicting-outputs</pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>5. Launch the App</h4>
+                                <div class="code-block">
+                                    <pre>flutter run</pre>
+                                </div>
+                            </div>
+
+                            <h3 style="color: #2563eb; margin-top: 25px; margin-bottom: 15px;">💡 Tips for New
+                                Developers</h3>
+                            <ul>
+                                <li><strong>Start with main.dart:</strong> Understand app initialization and entry
+                                    point.</li>
+                                <li><strong>Explore features/:</strong> Each folder is a self-contained module.</li>
+                                <li><strong>Use core/utils/:</strong> Contains helper functions for validation,
+                                    formatting, and
+                                    more.</li>
+                                <li><strong>Check widgets/:</strong> Reusable UI components to speed up development.
+                                </li>
+                                <li><strong>Ask Questions:</strong> Reach out to the team lead for assistance.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="section" id="guidelines">
+                        <h2 class="section-title"><span class="section-emoji">📐</span>Architecture Guidelines</h2>
+                        <div class="section-content">
+                            <p>To maintain a clean and consistent codebase, adhere to these principles:</p>
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Principle</th>
+                                            <th>Description</th>
+                                            <th>Why It Matters</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Feature Isolation</strong></td>
+                                            <td>Each feature (e.g., auth, profile) is self-contained with its own views,
+                                                controllers, and services.</td>
+                                            <td>Prevents code tangling and simplifies debugging.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>No Logic in UI</strong></td>
+                                            <td>Business logic belongs in controllers, not in view/ files.</td>
+                                            <td>Ensures reusable and testable code.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Reusable Core</strong></td>
+                                            <td>Use core/ for shared utilities like API clients, models, and themes.
+                                            </td>
+                                            <td>Reduces duplication and ensures consistency.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Minimal Dependencies</strong></td>
+                                            <td>Avoid heavy third-party packages unless justified.</td>
+                                            <td>Keeps the app lightweight and maintainable.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Consistent Naming</strong></td>
+                                            <td>Follow naming conventions (e.g., *_view.dart, *_controller.dart).</td>
+                                            <td>Improves code readability and navigation.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section" id="stats">
+                        <h2 class="section-title"><span class="section-emoji">📊</span>Project Stats</h2>
+                        <div class="section-content">
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-number">~14K</div>
+                                    <div class="stat-label">Lines of Code</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">7+</div>
+                                    <div class="stat-label">Major Features</div>
+                                </div>
+                                <!--                     <div class="stat-card">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">Test Coverage</div>
+                    </div> -->
+                                <div class="stat-card">
+                                    <div class="stat-number">2</div>
+                                    <div class="stat-label">Platforms</div>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 20px; color: #64748b;">Features: auth, profile,
+                                home,
+                                winks,
+                                notifications, search, setting | Platforms: iOS, Android | Minimum Flutter Version:
+                                3.5.3</p>
+                        </div>
+                    </div>
+
+                    <div class="section" id="changelog">
+                        <h2 class="section-title"><span class="section-emoji">🔄</span>Changelog</h2>
+                        <div class="section-content">
+                            <h3 style="color: #2563eb; margin-bottom: 15px;">🎉 Version 1.0.0 (2024-03-20)</h3>
+                            <ul class="feature-list">
+                                <li>Initial release with core features</li>
+                                <li>Complete authentication system</li>
+                                <li>Profile management with media support</li>
+                                <li>Social feed with real-time updates</li>
+                                <li>Modern UI<!-- with theme support   --></li>
+
+                                <!--                     <li>Comprehensive test suite</li> -->
+                                <li>Cross-platform optimization</li>
+                                <li>Performance improvements and bug fixes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+
                 </div>
-                <!-- <div class="contact-item">
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="section" id="team">
+                <h2 class="section-title"><span class="section-emoji">👥</span>Meet the Team</h2>
+                <div class="section-content">
+                    <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">🏆 Flutter Team at RootPointers
+                    </h3>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-role">Team Lead</div>
+                            <div class="team-name">Wahab Sohail</div>
+                            <div class="team-desc">Architecture design, project oversight, code reviews</div>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-role">Senior Developer</div>
+                            <div class="team-name">Asad Ullah (Mobile App Developer)</div>
+                            <div class="team-desc">Core feature development, performance optimization, GitHub management
+                            </div>
+                        <div class="team-card">
+                            <div class="team-role">Senior Developer(Backend Developer)</div>
+                            <div class="team-name">Asad Ullah</div>
+                            <div class="team-desc">Core feature development, performance optimization, GitHub management
+                            </div>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-role">UI/UX Developer</div>
+                            <div class="team-name">M Sami</div>
+                            <div class="team-desc">Design system, UI implementation, user experience</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 25px; font-style: italic; color: #64748b;">We're
+                        passionate
+                        about building logical, performant, and beautiful Flutter apps!</p>
+                </div>
+            </div>
+
+            <div class="section" id="tech-stack">
+                <h2 class="section-title"><span class="section-emoji">🛠️</span>Tech Stack</h2>
+                <div class="section-content">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Tools</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Frontend</strong></td>
+                                    <td>Flutter, Dart, Material Design 3</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>State Management</strong></td>
+                                    <td>GetX</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Backend</strong></td>
+                                    <td>Django, PostgreSQL, </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>File Storage</strong></td>
+                                    <td>AWS S3 (django-storages, boto3) </td>
+                                </tr>
+                                <!--                             <tr>
+                                <td><strong>Testing</strong></td>
+                                <td>Flutter Test, Mockito</td>
+                            </tr> -->
+                                <!--                             <tr>
+                                <td><strong>CI/CD</strong></td>
+                                <td>GitHub Actions, Fastlane</td>
+                            </tr> -->
+                                <tr>
+                                    <td><strong>Analytics</strong></td>
+                                    <td>Custom Analytics Integration</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Code Generation</strong></td>
+                                    <td>build_runner, json_serializable</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section" id="support">
+                <div class="cta-title">📞 Support</div>
+                <div class="cta-subtitle">Need Help? Contact the Team!</div>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <strong>📧 Email</strong><br>
+                        flutter@rootpointers.com
+                    </div>
+                    <!-- <div class="contact-item">
                     <strong>💬 Slack</strong><br>
                     #hood-wink-support
                 </div>
@@ -839,79 +1341,94 @@ cd hood-wink</pre>
                     <strong>🐛 Issues</strong><br>
                     Internal Issue Tracker
                 </div> -->
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><span class="section-emoji">🙏</span>Acknowledgments</h2>
+                <div class="section-content">
+                    <ul class="feature-list">
+                        <li><strong>Flutter Team:</strong> For the amazing framework that powers this app.</li>
+                        <li><strong>GetX Community:</strong> For providing a clean and powerful state management
+                            solution.
+                        </li>
+                        <li><strong>Development Team:</strong> For their dedication and expertise in building this
+                            platform.
+                        </li>
+                        <li><strong>Client Team:</strong> For their vision and support throughout the development
+                            process.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <div class="cta-title">🌟 Hood Wink - Connecting Communities</div>
+                <div class="cta-subtitle">Built with ❤️ by the Flutter Team at RootPointers</div>
+                <div style="font-style: italic; opacity: 0.9; margin-top: 10px;">Creating meaningful social connections,
+                    one
+                    feature at a time.</div>
             </div>
         </div>
 
-        <div class="section">
-            <h2 class="section-title"><span class="section-emoji">🙏</span>Acknowledgments</h2>
-            <div class="section-content">
-                <ul class="feature-list">
-                    <li><strong>Flutter Team:</strong> For the amazing framework that powers this app.</li>
-                    <li><strong>GetX Community:</strong> For providing a clean and powerful state management solution.
-                    </li>
-                    <li><strong>Development Team:</strong> For their dedication and expertise in building this platform.
-                    </li>
-                    <li><strong>Client Team:</strong> For their vision and support throughout the development process.
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <script>
+            function switchTab(event, tabName) {
+                const tabButtons = document.querySelectorAll(".tab-button");
+                tabButtons.forEach((btn) => btn.classList.remove("active"));
 
-        <div class="cta-section">
-            <div class="cta-title">🌟 Hood Wink - Connecting Communities</div>
-            <div class="cta-subtitle">Built with ❤️ by the Flutter Team at RootPointers</div>
-            <div style="font-style: italic; opacity: 0.9; margin-top: 10px;">Creating meaningful social connections, one
-                feature at a time.</div>
-        </div>
-    </div>
+                event.currentTarget.classList.add("active");
 
-    <script>
-        // Add smooth scrolling animation on load
-        document.addEventListener('DOMContentLoaded', function () {
-            // Handle smooth scrolling for all anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+                const tabPanes = document.querySelectorAll(".tab-pane");
+                tabPanes.forEach((pane) => {
+                    pane.style.display = pane.id === tabName ? "block" : "none";
+                });
+            }
+            // Add smooth scrolling animation on load
+            document.addEventListener('DOMContentLoaded', function () {
+                // Handle smooth scrolling for all anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+
+                const sections = document.querySelectorAll('.section');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                sections.forEach(section => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(30px)';
+                    section.style.transition = 'all 0.6s ease-out';
+                    observer.observe(section);
+                });
+
+                // Add hover effects to cards
+                const cards = document.querySelectorAll('.feature-card, .team-card, .stat-card');
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', function () {
+                        this.style.transform = 'translateY(-5px) scale(1.02)';
+                    });
+                    card.addEventListener('mouseleave', function () {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    });
                 });
             });
-
-            const sections = document.querySelectorAll('.section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(30px)';
-                section.style.transition = 'all 0.6s ease-out';
-                observer.observe(section);
-            });
-
-            // Add hover effects to cards
-            const cards = document.querySelectorAll('.feature-card, .team-card, .stat-card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function () {
-                    this.style.transform = 'translateY(-5px) scale(1.02)';
-                });
-                card.addEventListener('mouseleave', function () {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-        });
-    </script>
+        </script>
 </body>
 
 </html>
