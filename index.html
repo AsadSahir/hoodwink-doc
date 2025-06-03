@@ -633,16 +633,16 @@
                                 <li>GetX for reactive state management</li>
                                 <li>Controller-based architecture</li>
                                 <li>Dependency injection with GetX</li>
-                                <li>Reactive bindings and observers</li>
+                                <!-- <li>Reactive bindings and observers</li> -->
                             </ul>
                         </div>
                         <div class="feature-card">
                             <h3 class="feature-title">🌐 API Integration</h3>
                             <ul class="feature-list">
                                 <li>RESTful API consumption</li>
-                                <li>HTTP interceptors for auth</li>
+                                <li>DIO interceptors for auth</li>
                                 <li>Error handling and retry logic</li>
-                                <li>JSON serialization with code generation</li>
+                                <!-- <li>JSON serialization with code generation</li> -->
                             </ul>
                         </div>
                         <div class="feature-card">
@@ -651,7 +651,7 @@
                                 <li>Feature-first clean architecture</li>
                                 <li>Separation of concerns</li>
                                 <li>Repository pattern for data access</li>
-                                <li>MVVM pattern with GetX controllers</li>
+                                <!-- <li>MVVM pattern with GetX controllers</li> -->
                             </ul>
                         </div>
                     </div>
@@ -661,10 +661,10 @@
                         <span class="tech-item">Flutter</span>
                         <span class="tech-item">Dart</span>
                         <span class="tech-item">GetX</span>
-                        <span class="tech-item">Material Design 3</span>
-                        <span class="tech-item">HTTP</span>
-                        <span class="tech-item">JSON Serializable</span>
-                        <span class="tech-item">Build Runner</span>
+                        <!-- <span class="tech-item">Material Design 3</span> -->
+                        <span class="tech-item">Dio</span>
+                        <!-- <span class="tech-item">JSON Serializable</span> -->
+                        <!-- <span class="tech-item">Build Runner</span> -->
                     </div>
 
                     <div class="section" id="frontend-architecture">
@@ -684,7 +684,7 @@
                                 <h4>⚙️ Services: External APIs and backend connections power the app's functionality.
                                 </h4>
                             </div>
-                            <h3 style="margin-top: 20px; color: #2563eb;">Why This Architecture?</h3>
+                            <!-- <h3 style="margin-top: 20px; color: #2563eb;">Why This Architecture?</h3>
                             <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
                                 <li style="padding: 5px 0;"><strong>Modular:</strong> Add new features without
                                     disrupting
@@ -701,7 +701,7 @@
                                     isolated
                                     features
                                     simultaneously.</li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
 
@@ -715,9 +715,7 @@
 │   ├── 🔐 auth/                # Authentication feature
 │   │   ├── login/
 │   │   │   ├── view/           # UI components
-│   │   │   │   └── login_view.dart
 │   │   │   └── controller/     # Business logic
-│   │   │       └── login_controller.dart
 │   │   ├── signup/
 │   │   ├── otp/
 │   │   ├── reset_password/
@@ -732,44 +730,18 @@
 │   │   ├── view/
 │   │   └── controller/
 │   └── [other features]/       # e.g., wink, notifications, search
-│
 ├── 🏛️ core/                    # Shared utilities
 │   ├── 🌐 api_services/        # Network and API handling
-│   │   ├── api_client.dart
 │   │   ├── interceptors/
 │   │   └── endpoints/
 │   ├── 📋 constants/           # App-wide configurations
-│   │   ├── app_constants.dart
-│   │   ├── api_constants.dart
-│   │   └── theme_constants.dart
 │   ├── 🔧 extensions/          # Dart utility extensions
-│   │   ├── string_extensions.dart
-│   │   └── widget_extensions.dart
 │   ├── 🌍 global/              # Global state and controllers
-│   │   ├── app_controller.dart
-│   │   └── theme_controller.dart
 │   ├── 🧩 mixins/              # Reusable code snippets
-│   │   ├── validation_mixin.dart
-│   │   └── loading_mixin.dart
 │   ├── 📊 models/              # Data models
-│   │   ├── user_model.dart
-│   │   └── post_model.dart
 │   ├── 🎨 theme/               # App styling and themes
-│   │   ├── app_theme.dart
-│   │   ├── colors.dart
-│   │   └── text_styles.dart
 │   └── 🛠️ utils/               # Helper functions
-│       ├── validators.dart
-│       ├── helpers.dart
-│       └── formatters.dart
-│
 ├── 🧱 widgets/                 # Reusable UI components
-│   ├── app_button.dart
-│   ├── app_textfield.dart
-│   ├── app_divider.dart
-│   ├── app_iconbox.dart
-│   └── custom_scaffold.dart
-│
 ├── 📱 main.dart                # App entry point
 ├── 🛠️ app.dart                 # App configuration
 └── 🎨 assets.dart              # Asset management</pre>
@@ -842,13 +814,13 @@ cd hood-wink</pre>
                                     more.</li>
                                 <li><strong>Check widgets/:</strong> Reusable UI components to speed up development.
                                 </li>
-                                <li><strong>Ask Questions:</strong> Reach out to the team lead for assistance.</li>
+                                <!-- <li><strong>Ask Questions:</strong> Reach out to the team lead for assistance.</li> -->
                             </ul>
                         </div>
                     </div>
 
                     <div class="section" id="frontend-guidelines">
-                        <h2 class="section-title"><span class="section-emoji">📐</span>Architecture Guidelines</h2>
+                        <h2 class="section-title"><span class="section-emoji">📐</span>Flutter Architecture Guidelines</h2>
                         <div class="section-content">
                             <p>To maintain a clean and consistent codebase, adhere to these principles:</p>
                             <div class="table-container">
@@ -923,7 +895,7 @@ cd hood-wink</pre>
                         </div>
                     </div>
 
-                    <div class="section" id="frontend-changelog">
+                    <!-- <div class="section" id="frontend-changelog">
                         <h2 class="section-title"><span class="section-emoji">🔄</span>Changelog</h2>
                         <div class="section-content">
                             <h3 style="color: #2563eb; margin-bottom: 15px;">🎉 Version 1.0.0 (2024-03-20)</h3>
@@ -932,58 +904,54 @@ cd hood-wink</pre>
                                 <li>Complete authentication system</li>
                                 <li>Profile management with media support</li>
                                 <li>Social feed with real-time updates</li>
-                                <li>Modern UI<!-- with theme support   --></li>
+                                <li>Modern UI</li>
 
-                                <!--                     <li>Comprehensive test suite</li> -->
+                                <li>Comprehensive test suite</li>
                                 <li>Cross-platform optimization</li>
                                 <li>Performance improvements and bug fixes</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
 
                 <!-- Backend Tab -->
                 <div id="backend" class="tab-pane" style="display: none;">
-                    <h3 style="color: #2563eb; margin-bottom: 20px; font-size: 1.8rem;">⚙️ Backend Documentation</h3>
-                    <p style="margin-bottom: 20px;">The Hood Wink backend provides robust APIs and services to support
-                        the mobile application with scalable architecture.</p>
-
+                    <h3 style="color: #2563eb; margin-bottom: 20px; font-size: 1.8rem;">⚙️ Django Backend Documentation
+                    </h3>
+                    <p style="margin-bottom: 20px;">The Hood Wink Django backend provides robust REST APIs and services
+                        to support
+                        the mobile application with scalable MVC architecture and Django best practices.</p>
 
                     <div class="section" id="backend-architecture">
                         <h2 class="section-title"><span class="section-emoji">🏗️</span>Architecture Overview</h2>
                         <div class="section-content">
-                            <p>We use a feature-first clean architecture, which organizes the codebase like a modular
-                                city:</p>
+                            <p>We use Django's MVC (Model-View-Controller) pattern with Django REST Framework, organized
+                                like a well-structured city:</p>
                             <br>
                             <div class="architecture-diagram">
-                                <h4>🏬 Features: Independent modules (e.g., auth, profile, home) act like self-contained
-                                    neighborhoods, each with its own UI, logic, and services.</h4>
-                                <h4>🏛️ Core: Shared utilities (API clients, models, themes) serve as the city's
-                                    infrastructure.
+                                <h4>📱 Apps: Django apps (auth, profiles, posts, notifications) act like specialized
+                                    districts, each handling specific business domains.</h4>
+                                <h4>🗄️ Models: Database models serve as the foundation, defining data structure and
+                                    relationships.</h4>
+                                <h4>🎯 Views: API views and viewsets handle HTTP requests and orchestrate business
+                                    logic.</h4>
+                                <h4>🔗 URLs: URL routing connects endpoints to appropriate views, like street addresses.
                                 </h4>
-                                <h4>🧱 Widgets: Reusable UI components are like building blocks used across features.
-                                </h4>
-                                <h4>⚙️ Services: External APIs and backend connections power the app's functionality.
+                                <h4>🛠️ Services: Business logic services keep views clean and promote code reuse.</h4>
+                                <h4>🔧 Utils: Shared utilities and helpers support the entire application ecosystem.
                                 </h4>
                             </div>
-                            <h3 style="margin-top: 20px; color: #2563eb;">Why This Architecture?</h3>
+                            <h3 style="margin-top: 20px; color: #2563eb;">Why Django MVC?</h3>
                             <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
-                                <li style="padding: 5px 0;"><strong>Modular:</strong> Add new features without
-                                    disrupting
-                                    existing
-                                    ones.</li>
-                                <li style="padding: 5px 0;"><strong>Scalable:</strong> Supports large teams and complex
-                                    apps.
-                                </li>
-                                <li style="padding: 5px 0;"><strong>Maintainable:</strong> Clear separation of concerns
-                                    reduces
-                                    bugs
-                                    and simplifies debugging.</li>
-                                <li style="padding: 5px 0;"><strong>Collaborative:</strong> Developers can work on
-                                    isolated
-                                    features
-                                    simultaneously.</li>
+                                <li style="padding: 5px 0;"><strong>Separation of Concerns:</strong> Models handle data,
+                                    Views handle logic, Templates handle presentation.</li>
+                                <li style="padding: 5px 0;"><strong>Scalable:</strong> Django's app structure supports
+                                    large, complex applications.</li>
+                                <li style="padding: 5px 0;"><strong>Maintainable:</strong> Clear patterns reduce bugs
+                                    and simplify debugging.</li>
+                                <li style="padding: 5px 0;"><strong>Battle-tested:</strong> Proven architecture used by
+                                    Instagram, Pinterest, and Mozilla.</li>
                             </ul>
                         </div>
                     </div>
@@ -991,71 +959,90 @@ cd hood-wink</pre>
                     <div class="section" id="backend-project-structure">
                         <h2 class="section-title"><span class="section-emoji">📁</span>Project Structure</h2>
                         <div class="section-content">
-                            <p>The codebase is organized for clarity and ease of navigation. Here's the structure:</p>
+                            <p>The Django backend follows conventional structure with clear separation of concerns:</p>
                             <div class="code-block">
-                                <pre>lib/
-├── 🎯 features/                 # Feature modules (self-contained)
-│   ├── 🔐 auth/                # Authentication feature
-│   │   ├── login/
-│   │   │   ├── view/           # UI components
-│   │   │   │   └── login_view.dart
-│   │   │   └── controller/     # Business logic
-│   │   │       └── login_controller.dart
-│   │   ├── signup/
-│   │   ├── otp/
-│   │   ├── reset_password/
-│   │   ├── password_change/
-│   │   └── repository/           # Feature-specific API calls
-│   │       └── auth_repository.dart
-│   ├── 👤 profile/             # Profile management
-│   │   ├── view/
-│   │   ├── controller/
-│   │   └── services/
-│   ├── 🏠 home/                # Social feed and interactions
-│   │   ├── view/
-│   │   └── controller/
-│   └── [other features]/       # e.g., wink, notifications, search
+                                <pre>hood_wink_backend/
+├── 🚀 manage.py                    # Django management script
+├── 📋 requirements.txt             # Python dependencies
+├── 🐳 Dockerfile                   # Container configuration
+├── ⚙️ docker-compose.yml           # Development environment
 │
-├── 🏛️ core/                    # Shared utilities
-│   ├── 🌐 api_services/        # Network and API handling
-│   │   ├── api_client.dart
-│   │   ├── interceptors/
-│   │   └── endpoints/
-│   ├── 📋 constants/           # App-wide configurations
-│   │   ├── app_constants.dart
-│   │   ├── api_constants.dart
-│   │   └── theme_constants.dart
-│   ├── 🔧 extensions/          # Dart utility extensions
-│   │   ├── string_extensions.dart
-│   │   └── widget_extensions.dart
-│   ├── 🌍 global/              # Global state and controllers
-│   │   ├── app_controller.dart
-│   │   └── theme_controller.dart
-│   ├── 🧩 mixins/              # Reusable code snippets
-│   │   ├── validation_mixin.dart
-│   │   └── loading_mixin.dart
-│   ├── 📊 models/              # Data models
-│   │   ├── user_model.dart
-│   │   └── post_model.dart
-│   ├── 🎨 theme/               # App styling and themes
-│   │   ├── app_theme.dart
-│   │   ├── colors.dart
-│   │   └── text_styles.dart
-│   └── 🛠️ utils/               # Helper functions
-│       ├── validators.dart
-│       ├── helpers.dart
-│       └── formatters.dart
+├── 🏠 hood_wink/                   # Main project directory
+│   ├── __init__.py
+│   ├── settings/                   # Environment-specific settings
+│   │   ├── __init__.py
+│   │   ├── base.py                # Base settings
+│   │   ├── development.py         # Dev environment
+│   │   ├── production.py          # Production environment
+│   │   └── testing.py             # Test environment
+│   ├── urls.py                    # Main URL configuration
+│   ├── wsgi.py                    # WSGI configuration
+│   └── asgi.py                    # ASGI configuration
 │
-├── 🧱 widgets/                 # Reusable UI components
-│   ├── app_button.dart
-│   ├── app_textfield.dart
-│   ├── app_divider.dart
-│   ├── app_iconbox.dart
-│   └── custom_scaffold.dart
+├── 🔐 apps/authentication/         # User authentication app
+│   ├── __init__.py
+│   ├── admin.py                   # Django admin configuration
+│   ├── apps.py                    # App configuration
+│   ├── models.py                  # User models and profiles
+│   ├── serializers.py             # DRF serializers
+│   ├── views.py                   # Authentication views/viewsets
+│   ├── urls.py                    # App-specific URLs
+│   ├── services.py                # Business logic services
+│   ├── permissions.py             # Custom permissions
+│   ├── validators.py              # Input validation
+│   └── migrations/                # Database migrations
 │
-├── 📱 main.dart                # App entry point
-├── 🛠️ app.dart                 # App configuration
-└── 🎨 assets.dart              # Asset management</pre>
+├── 👤 apps/profiles/               # User profile management
+│   ├── models.py                  # Profile, media models
+│   ├── serializers.py             # Profile serializers
+│   ├── views.py                   # Profile CRUD operations
+│   ├── services.py                # Profile business logic
+│   └── [standard Django files]
+│
+├── 📱 apps/posts/                  # Social posts and feed
+│   ├── models.py                  # Post, Like, Comment models
+│   ├── serializers.py             # Post serializers
+│   ├── views.py                   # Feed and post operations
+│   ├── services.py                # Feed algorithms
+│   └── [standard Django files]
+│
+├── 💫 apps/winks/                  # Wink interactions
+│   ├── models.py                  # Wink models
+│   ├── serializers.py             # Wink serializers
+│   ├── views.py                   # Wink operations
+│   └── [standard Django files]
+│
+├── 🔔 apps/notifications/          # Push notifications
+│   ├── models.py                  # Notification models
+│   ├── services.py                # FCM and notification logic
+│   └── [standard Django files]
+│
+├── 🏛️ core/                        # Shared utilities
+│   ├── __init__.py
+│   ├── 🌐 api/                     # API utilities
+│   │   ├── __init__.py
+│   │   ├── pagination.py          # Custom pagination
+│   │   ├── permissions.py         # Global permissions
+│   │   ├── throttling.py          # Rate limiting
+│   │   └── response.py            # Standardized responses
+│   ├── 🔧 utils/                   # Helper functions
+│   │   ├── __init__.py
+│   │   ├── validators.py          # Custom validators
+│   │   ├── helpers.py             # Utility functions
+│   │   ├── constants.py           # App constants
+│   │   └── exceptions.py          # Custom exceptions
+│   ├── 🗄️ models/                  # Abstract base models
+│   │   ├── __init__.py
+│   │   └── base.py                # TimestampedModel, etc.
+│   └── 🧪 tests/                   # Shared test utilities
+│       ├── __init__.py
+│       ├── factories.py           # Model factories
+│       └── base.py                # Base test classes
+│
+├── 📊 static/                      # Static files
+├── 📁 media/                       # User uploads
+├── 🧪 tests/                       # Integration tests
+└── 📝 docs/                        # API documentation</pre>
                             </div>
                         </div>
                     </div>
@@ -1064,16 +1051,15 @@ cd hood-wink</pre>
                         <h2 class="section-title"><span class="section-emoji">🚀</span>Quick Start for New Developers
                         </h2>
                         <div class="section-content">
-                            <p style="font-size: 1.1rem; margin-bottom: 20px;">Welcome to the Hood Wink project! Follow
-                                these
-                                steps
-                                to set up the project and start contributing:</p>
+                            <p style="font-size: 1.1rem; margin-bottom: 20px;">Welcome to the Hood Wink Django backend!
+                                Follow these steps to set up your development environment:</p>
 
                             <h3 style="color: #2563eb; margin-bottom: 15px;">📋 Prerequisites</h3>
                             <ul style="margin-bottom: 20px;">
-                                <li><strong>Flutter SDK:</strong> Version ^3.5.3</li>
-                                <li><strong>Dart SDK:</strong> Included with Flutter</li>
-                                <li><strong>IDE:</strong> Android Studio or VS Code with Flutter/Dart plugins</li>
+                                <li><strong>Python:</strong> Version 3.9+ (recommended 3.11)</li>
+                                <li><strong>PostgreSQL:</strong> Version 12+ for database</li>
+                                <li><strong>Redis:</strong> For caching and Celery tasks</li>
+                                <li><strong>Docker:</strong> For containerized development (optional)</li>
                                 <li><strong>Git:</strong> For version control</li>
                             </ul>
 
@@ -1082,58 +1068,72 @@ cd hood-wink</pre>
                             <div style="margin-bottom: 20px;">
                                 <h4>1. Clone the Repository</h4>
                                 <div class="code-block">
-                                    <pre>git clone https://github.com/roootpointers/hood_wink
-cd hood-wink</pre>
+                                    <pre>git clone https://github.com/roootpointers/hood_wink_backend
+cd hood_wink_backend</pre>
                                 </div>
                             </div>
 
                             <div style="margin-bottom: 20px;">
-                                <h4>2. Install Dependencies</h4>
+                                <h4>2. Create Virtual Environment</h4>
                                 <div class="code-block">
-                                    <pre>flutter pub get</pre>
+                                    <pre>python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt</pre>
                                 </div>
                             </div>
 
                             <div style="margin-bottom: 20px;">
-                                <h4>3. Configure API Endpoints</h4>
-                                <p>Update the API endpoints in the configuration files with the provided credentials.
-                                </p>
-                            </div>
-
-                            <div style="margin-bottom: 20px;">
-                                <h4>4. Run Code Generation</h4>
+                                <h4>3. Environment Configuration</h4>
                                 <div class="code-block">
-                                    <pre>flutter packages pub run build_runner build --delete-conflicting-outputs</pre>
+                                    <pre>cp .env.example .env
+# Edit .env with your database credentials and API keys</pre>
                                 </div>
                             </div>
 
                             <div style="margin-bottom: 20px;">
-                                <h4>5. Launch the App</h4>
+                                <h4>4. Database Setup</h4>
                                 <div class="code-block">
-                                    <pre>flutter run</pre>
+                                    <pre>python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser</pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>5. Run Development Server</h4>
+                                <div class="code-block">
+                                    <pre>python manage.py runserver</pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <h4>6. Alternative: Docker Setup</h4>
+                                <div class="code-block">
+                                    <pre>docker-compose up --build
+docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py createsuperuser</pre>
                                 </div>
                             </div>
 
                             <h3 style="color: #2563eb; margin-top: 25px; margin-bottom: 15px;">💡 Tips for New
                                 Developers</h3>
                             <ul>
-                                <li><strong>Start with main.dart:</strong> Understand app initialization and entry
-                                    point.</li>
-                                <li><strong>Explore features/:</strong> Each folder is a self-contained module.</li>
-                                <li><strong>Use core/utils/:</strong> Contains helper functions for validation,
-                                    formatting, and
-                                    more.</li>
-                                <li><strong>Check widgets/:</strong> Reusable UI components to speed up development.
-                                </li>
-                                <li><strong>Ask Questions:</strong> Reach out to the team lead for assistance.</li>
+                                <li><strong>Start with settings/:</strong> Understand environment-specific
+                                    configurations.</li>
+                                <li><strong>Explore apps/:</strong> Each app handles a specific business domain.</li>
+                                <li><strong>Use core/utils/:</strong> Contains validators, helpers, and shared
+                                    utilities.</li>
+                                <li><strong>Check API docs:</strong> Auto-generated documentation at /api/docs/.</li>
+                                <li><strong>Run tests:</strong> Use `python manage.py test` for the test suite.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="section" id="backend-guidelines">
-                        <h2 class="section-title"><span class="section-emoji">📐</span>Architecture Guidelines</h2>
+                        <h2 class="section-title"><span class="section-emoji">📐</span>Django Architecture Guidelines
+                        </h2>
                         <div class="section-content">
-                            <p>To maintain a clean and consistent codebase, adhere to these principles:</p>
+                            <p>Follow these Django best practices to maintain clean, scalable code:</p>
                             <div class="table-container">
                                 <table class="table">
                                     <thead>
@@ -1145,31 +1145,30 @@ cd hood-wink</pre>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><strong>Feature Isolation</strong></td>
-                                            <td>Each feature (e.g., auth, profile) is self-contained with its own views,
-                                                controllers, and services.</td>
-                                            <td>Prevents code tangling and simplifies debugging.</td>
+                                            <td><strong>Fat Models, Thin Views</strong></td>
+                                            <td>Business logic goes in models and services, not views.</td>
+                                            <td>Promotes reusability and testability.</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>No Logic in UI</strong></td>
-                                            <td>Business logic belongs in controllers, not in view/ files.</td>
-                                            <td>Ensures reusable and testable code.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Reusable Core</strong></td>
-                                            <td>Use core/ for shared utilities like API clients, models, and themes.
+                                            <td><strong>App Separation</strong></td>
+                                            <td>Each Django app handles one business domain (auth, profiles, posts).
                                             </td>
-                                            <td>Reduces duplication and ensures consistency.</td>
+                                            <td>Prevents coupling and simplifies maintenance.</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Minimal Dependencies</strong></td>
-                                            <td>Avoid heavy third-party packages unless justified.</td>
-                                            <td>Keeps the app lightweight and maintainable.</td>
+                                            <td><strong>DRF Best Practices</strong></td>
+                                            <td>Use serializers for validation, viewsets for CRUD operations.</td>
+                                            <td>Ensures consistent API design and validation.</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Consistent Naming</strong></td>
-                                            <td>Follow naming conventions (e.g., *_view.dart, *_controller.dart).</td>
-                                            <td>Improves code readability and navigation.</td>
+                                            <td><strong>Service Layer</strong></td>
+                                            <td>Complex business logic belongs in service classes.</td>
+                                            <td>Keeps views clean and logic reusable.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Environment Settings</strong></td>
+                                            <td>Separate settings for development, testing, and production.</td>
+                                            <td>Prevents configuration errors and security issues.</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1177,52 +1176,94 @@ cd hood-wink</pre>
                         </div>
                     </div>
 
+                    <!-- <div class="section" id="backend-api-patterns">
+                        <h2 class="section-title"><span class="section-emoji">🔌</span>API Design Patterns</h2>
+                        <div class="section-content">
+                            <p>Our REST API follows consistent patterns for predictable integration:</p>
+                            <div class="code-block">
+                                <pre># Standard API Response Format
+{
+    "success": true,
+    "message": "Operation completed successfully",
+    "data": { ... },
+    "errors": null,
+    "meta": {
+        "timestamp": "2024-03-20T10:30:00Z",
+        "version": "1.0.0"
+    }
+}
+
+# Error Response Format
+{
+    "success": false,
+    "message": "Validation failed",
+    "data": null,
+    "errors": {
+        "email": ["This field is required."],
+        "password": ["Password too weak."]
+    }
+}</pre>
+                            </div>
+
+                            <h3 style="color: #2563eb; margin-top: 20px;">Common Endpoints</h3>
+                            <ul>
+                                <li><strong>Authentication:</strong> /api/auth/login/, /api/auth/register/,
+                                    /api/auth/refresh/</li>
+                                <li><strong>Profiles:</strong> /api/profiles/, /api/profiles/{id}/</li>
+                                <li><strong>Posts:</strong> /api/posts/, /api/posts/{id}/like/</li>
+                                <li><strong>Winks:</strong> /api/winks/, /api/winks/send/</li>
+                                <li><strong>Notifications:</strong> /api/notifications/, /api/notifications/mark-read/
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+
                     <div class="section" id="backend-stats">
                         <h2 class="section-title"><span class="section-emoji">📊</span>Project Stats</h2>
                         <div class="section-content">
                             <div class="stats-grid">
                                 <div class="stat-card">
-                                    <div class="stat-number">~14K</div>
+                                    <div class="stat-number">~8K</div>
                                     <div class="stat-label">Lines of Code</div>
                                 </div>
                                 <div class="stat-card">
-                                    <div class="stat-number">7+</div>
-                                    <div class="stat-label">Major Features</div>
+                                    <div class="stat-number">5</div>
+                                    <div class="stat-label">Django Apps</div>
                                 </div>
-                                <!--                     <div class="stat-card">
-                        <div class="stat-number">80%</div>
-                        <div class="stat-label">Test Coverage</div>
-                    </div> -->
                                 <div class="stat-card">
-                                    <div class="stat-number">2</div>
-                                    <div class="stat-label">Platforms</div>
+                                    <div class="stat-number">25+</div>
+                                    <div class="stat-label">API Endpoints</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">15+</div>
+                                    <div class="stat-label">Database Models</div>
                                 </div>
                             </div>
-                            <p style="text-align: center; margin-top: 20px; color: #64748b;">Features: auth, profile,
-                                home,
-                                winks,
-                                notifications, search, setting | Platforms: iOS, Android | Minimum Flutter Version:
-                                3.5.3</p>
+                            <p style="text-align: center; margin-top: 20px; color: #64748b;">
+                                Apps: authentication, profiles, posts, winks, notifications |
+                                Database: PostgreSQL | Cache: Redis |
+                                Python Version: 3.11+
+                            </p>
                         </div>
                     </div>
 
-                    <div class="section" id="backend-changelog">
-                        <h2 class="section-title"><span class="section-emoji">🔄</span>Changelog</h2>
-                        <div class="section-content">
-                            <h3 style="color: #2563eb; margin-bottom: 15px;">🎉 Version 1.0.0 (2024-03-20)</h3>
-                            <ul class="feature-list">
-                                <li>Initial release with core features</li>
-                                <li>Complete authentication system</li>
-                                <li>Profile management with media support</li>
-                                <li>Social feed with real-time updates</li>
-                                <li>Modern UI<!-- with theme support   --></li>
-
-                                <!--                     <li>Comprehensive test suite</li> -->
-                                <li>Cross-platform optimization</li>
-                                <li>Performance improvements and bug fixes</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <!-- <div class="section" id="backend-changelog">
+            <h2 class="section-title"><span class="section-emoji">🔄</span>Changelog</h2>
+            <div class="section-content">
+                <h3 style="color: #2563eb; margin-bottom: 15px;">🎉 Version 1.0.0 (2024-03-20)</h3>
+                <ul class="feature-list">
+                    <li>Django 4.2 LTS foundation with REST Framework</li>
+                    <li>JWT-based authentication system</li>
+                    <li>User profiles with media upload support</li>
+                    <li>Social posting and feed algorithms</li>
+                    <li>Real-time notifications with FCM</li>
+                    <li>Wink interaction system</li>
+                    <li>Comprehensive API documentation</li>
+                    <li>Docker containerization</li>
+                    <li>Production-ready deployment configuration</li>
+                </ul>
+            </div>
+        </div> -->
                 </div>
             </div>
         </div>
@@ -1239,8 +1280,9 @@ cd hood-wink</pre>
                     </div>
                     <div class="team-card">
                         <div class="team-role">Senior Developer</div>
-                        <div class="team-name">Babar Abrar(Backend Developer)</div>
-                        <div class="team-desc">Core feature development, performance optimization, GitHub management
+                        <div class="team-name">Baber Ibrar(Backend Developer)</div>
+                        <div class="team-desc">
+                            API architecture, database design, backend logic, and GitHub management
                         </div>
                     </div>
                     <div class="team-card">
@@ -1248,13 +1290,11 @@ cd hood-wink</pre>
                         <div class="team-name">Asad Ullah (Mobile App Developer)</div>
                         <div class="team-desc">Core feature development, performance optimization, GitHub management
                         </div>
-
                     </div>
                     <div class="team-card">
                         <div class="team-role">UI/UX Developer</div>
                         <div class="team-name">M Sami</div>
                         <div class="team-desc">Design system, UI implementation, user experience</div>
-
                     </div>
                 </div>
                 <p style="text-align: center; margin-top: 25px; font-style: italic; color: #64748b;">We're
@@ -1262,55 +1302,213 @@ cd hood-wink</pre>
 
             </div>
 
-            <div class="section" id="tech-stack">
-                <h2 class="section-title"><span class="section-emoji">🛠️</span>Tech Stack</h2>
-                <div class="section-content">
-                    <div class="table-container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Tools</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Frontend</strong></td>
-                                    <td>Flutter, Dart, Material Design 3</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>State Management</strong></td>
-                                    <td>GetX</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Backend</strong></td>
-                                    <td>Django, PostgreSQL, </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>File Storage</strong></td>
-                                    <td>AWS S3 (django-storages, boto3) </td>
-                                </tr>
-                                <!--                             <tr>
-                                <td><strong>Testing</strong></td>
-                                <td>Flutter Test, Mockito</td>
-                            </tr> -->
-                                <!--                             <tr>
-                                <td><strong>CI/CD</strong></td>
-                                <td>GitHub Actions, Fastlane</td>
-                            </tr> -->
-                                <tr>
-                                    <td><strong>Analytics</strong></td>
-                                    <td>Custom Analytics Integration</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Code Generation</strong></td>
-                                    <td>build_runner, json_serializable</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+             <div class="section" id="tech-stack">
+        <h2 class="section-title"><span class="section-emoji">🛠️</span>Tech Stack</h2>
+        <div class="section-content">
+            <!-- <p style="margin-bottom: 25px; color: #64748b; font-size: 1.1rem;">
+                Hood Wink is built with modern, scalable technologies that ensure performance, maintainability, and developer productivity.
+            </p> -->
+
+            <!-- <div class="architecture-overview">
+                <h3>🏗️ Architecture Overview</h3>
+                <p><strong>Flutter Mobile App</strong> ↔️ <strong>REST APIs</strong> ↔️ <strong>Django Backend</strong> ↔️ <strong>PostgreSQL Database</strong></p>
+                <p style="margin-top: 10px; font-size: 0.95rem; color: #64748b;">
+                    The mobile app communicates with Django REST APIs, which handle business logic and data persistence using PostgreSQL, with media files stored on AWS S3.
+                </p>
+            </div> -->
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Category</th>
+                            <th style="width: 50%;">Technologies</th>
+                            <th style="width: 25%;">Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>📱 Mobile Frontend</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge frontend">Flutter 3.5.3+</span>
+                                    <span class="tech-badge frontend">Dart 3.0+</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge frontend">Material Design 3</span>
+                                    <span class="tech-badge frontend">Cupertino Widgets</span>
+                                </div>
+                            </td>
+                            <td>Cross-platform mobile app development with native performance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🧠 State Management</strong></td>
+                            <td>
+                                <span class="tech-badge frontend">GetX</span>
+                                <span class="tech-badge frontend">Reactive Programming</span>
+                            </td>
+                            <td>Efficient state management, dependency injection, and navigation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⚙️ Backend Framework</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge backend">Django 4.2 LTS</span>
+                                    <span class="tech-badge backend">Python 3.11+</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge backend">Django REST Framework</span>
+                                    <span class="tech-badge backend">djangorestframework-simplejwt</span>
+                                </div>
+                            </td>
+                            <td>Robust web framework with REST API capabilities and JWT authentication</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🗄️ Database & Cache</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge backend">PostgreSQL 14+</span>
+                                    <span class="tech-badge backend">Redis 6+</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge backend">django-redis</span>
+                                    <span class="tech-badge backend">psycopg2-binary</span>
+                                </div>
+                            </td>
+                            <td>Reliable data storage with in-memory caching for performance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>☁️ File Storage</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge devops">AWS S3</span>
+                                    <span class="tech-badge backend">django-storages</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge backend">boto3</span>
+                                    <span class="tech-badge backend">Pillow</span>
+                                </div>
+                            </td>
+                            <td>Scalable cloud storage for user media and static files</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔐 Authentication</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge backend">JWT Tokens</span>
+                                    <span class="tech-badge backend">Django Auth</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge frontend">flutter_secure_storage</span>
+                                    <span class="tech-badge frontend">dio_interceptors</span>
+                                </div>
+                            </td>
+                            <td>Secure user authentication with token-based session management</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🌐 API & Networking</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge frontend">Dio HTTP Client</span>
+                                    <span class="tech-badge backend">Django REST Framework</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge backend">django-cors-headers</span>
+                                    <span class="tech-badge backend">drf-spectacular</span>
+                                </div>
+                            </td>
+                            <td>HTTP client for API calls with automatic documentation generation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔔 Notifications</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge mobile">Firebase Cloud Messaging</span>
+                                    <span class="tech-badge frontend">firebase_messaging</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge backend">fcm-django</span>
+                                    <span class="tech-badge backend">Celery</span>
+                                </div>
+                            </td>
+                            <td>Real-time push notifications with background task processing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>📊 Analytics & Monitoring</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge devops">Custom Analytics</span>
+                                    <span class="tech-badge backend">Django Logging</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge devops">Sentry</span>
+                                    <span class="tech-badge devops">Django Debug Toolbar</span>
+                                </div>
+                            </td>
+                            <td>Application monitoring, error tracking, and performance analytics</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔧 Code Generation</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge frontend">build_runner</span>
+                                    <span class="tech-badge frontend">json_serializable</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge frontend">json_annotation</span>
+                                    <span class="tech-badge backend">Django Migrations</span>
+                                </div>
+                            </td>
+                            <td>Automated code generation for serialization and database schemas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🚀 DevOps & Deployment</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge devops">Docker</span>
+                                    <span class="tech-badge devops">docker-compose</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge devops">GitHub Actions</span>
+                                    <span class="tech-badge devops">Gunicorn</span>
+                                </div>
+                            </td>
+                            <td>Containerized deployment with CI/CD automation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🧪 Testing & Quality</strong></td>
+                            <td>
+                                <div class="tech-category">
+                                    <span class="tech-badge frontend">Flutter Test</span>
+                                    <span class="tech-badge frontend">Mockito</span>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="tech-badge backend">Django TestCase</span>
+                                    <span class="tech-badge backend">pytest-django</span>
+                                </div>
+                            </td>
+                            <td>Comprehensive testing frameworks for both frontend and backend</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+
+            <!-- <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-top: 25px;">
+                <h3 style="color: #1e40af; margin-bottom: 15px;">🎯 Technology Decisions</h3>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li><strong>Flutter + Django:</strong> Combines rapid mobile development with robust backend infrastructure</li>
+                    <li><strong>PostgreSQL:</strong> ACID compliance and advanced features for complex social app requirements</li>
+                    <li><strong>JWT Authentication:</strong> Stateless authentication perfect for mobile applications</li>
+                    <li><strong>AWS S3:</strong> Scalable media storage with global CDN capabilities</li>
+                    <li><strong>GetX:</strong> Lightweight state management with reactive programming paradigm</li>
+                </ul>
+            </div> -->
+
+            <p style="text-align: center; margin-top: 25px; color: #64748b; font-size: 0.9rem;">
+                <strong>Version Compatibility:</strong> Flutter 3.5.3+ • Django 4.2 LTS • Python 3.11+ • PostgreSQL 14+ (development tools)
+            </p>
+        </div>
+    </div>
 
             <div class="cta-section" id="support">
                 <div class="cta-title">📞 Support</div>
@@ -1363,87 +1561,87 @@ cd hood-wink</pre>
             </div>
         </div>
 
-<script>
-    function setActiveTab(tabName) {
-        const tabButtons = document.querySelectorAll(".tab-button");
-        const tabPanes = document.querySelectorAll(".tab-pane");
+        <script>
+            function setActiveTab(tabName) {
+                const tabButtons = document.querySelectorAll(".tab-button");
+                const tabPanes = document.querySelectorAll(".tab-pane");
 
-        tabButtons.forEach(btn => {
-            btn.classList.toggle("active", btn.getAttribute('data-tab') === tabName);
-        });
+                tabButtons.forEach(btn => {
+                    btn.classList.toggle("active", btn.getAttribute('data-tab') === tabName);
+                });
 
-        tabPanes.forEach(pane => {
-            pane.style.display = pane.id === tabName ? "block" : "none";
-        });
+                tabPanes.forEach(pane => {
+                    pane.style.display = pane.id === tabName ? "block" : "none";
+                });
 
-        // Update badge hrefs
-        const tabDependentBadges = document.querySelectorAll('.badge[data-tab-dependent="true"]');
-        tabDependentBadges.forEach(badge => {
-            const section = badge.getAttribute('data-section');
-            badge.setAttribute('href', `#${tabName}-${section}`);
-        });
-    }
+                // Update badge hrefs
+                const tabDependentBadges = document.querySelectorAll('.badge[data-tab-dependent="true"]');
+                tabDependentBadges.forEach(badge => {
+                    const section = badge.getAttribute('data-section');
+                    badge.setAttribute('href', `#${tabName}-${section}`);
+                });
+            }
 
-    function switchTab(event, tabName) {
-        setActiveTab(tabName);
+            function switchTab(event, tabName) {
+                setActiveTab(tabName);
 
-        // Optional: Update the URL without reload
-        const url = new URL(window.location);
-        url.searchParams.set('tab', tabName);
-        history.replaceState(null, '', url);
-    }
+                // Optional: Update the URL without reload
+                const url = new URL(window.location);
+                url.searchParams.set('tab', tabName);
+                history.replaceState(null, '', url);
+            }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // Handle ?tab=backend or ?tab=frontend
-        const params = new URLSearchParams(window.location.search);
-        const validTabs = ['frontend', 'backend'];
-        const tabParam = params.get('tab');
-        const defaultTab = 'frontend';
+            document.addEventListener('DOMContentLoaded', function () {
+                // Handle ?tab=backend or ?tab=frontend
+                const params = new URLSearchParams(window.location.search);
+                const validTabs = ['frontend', 'backend'];
+                const tabParam = params.get('tab');
+                const defaultTab = 'frontend';
 
-        const initialTab = validTabs.includes(tabParam) ? tabParam : defaultTab;
-        setActiveTab(initialTab);
+                const initialTab = validTabs.includes(tabParam) ? tabParam : defaultTab;
+                setActiveTab(initialTab);
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                // Smooth scroll for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                });
+
+                // Fade-in animation for sections
+                const sections = document.querySelectorAll('.section');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                sections.forEach(section => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(30px)';
+                    section.style.transition = 'all 0.6s ease-out';
+                    observer.observe(section);
+                });
+
+                // Hover effects on cards
+                const cards = document.querySelectorAll('.feature-card, .team-card, .stat-card');
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        card.style.transform = 'translateY(-5px) scale(1.02)';
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'translateY(0) scale(1)';
+                    });
+                });
             });
-        });
-
-        // Fade-in animation for sections
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'all 0.6s ease-out';
-            observer.observe(section);
-        });
-
-        // Hover effects on cards
-        const cards = document.querySelectorAll('.feature-card, .team-card, .stat-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px) scale(1.02)';
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    });
-</script>
+        </script>
 
 </body>
 
